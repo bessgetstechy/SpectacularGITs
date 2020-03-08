@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 06, 2020 at 01:29 PM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.10
+-- Generation Time: Mar 08, 2020 at 03:10 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `boardgame_library`
+-- Database: `boardgame_libaryDB`
 --
 
 -- --------------------------------------------------------
@@ -205,24 +205,28 @@ CREATE TABLE `EMPLOYEES` (
   `EmployeeID` smallint(5) UNSIGNED NOT NULL,
   `FirstName` varchar(50) NOT NULL,
   `LastName` varchar(50) NOT NULL,
-  `Address` varchar(100) NOT NULL,
-  `PhoneNumber` varchar(20) NOT NULL
+  `AddressLine` varchar(100) NOT NULL,
+  `Town` varchar(50) NOT NULL,
+  `Postcode` varchar(8) NOT NULL,
+  `PhoneNumber` varchar(20) NOT NULL,
+  `EmailAddress` varchar(254) NOT NULL,
+  `Password` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `EMPLOYEES`
 --
 
-INSERT INTO `EMPLOYEES` (`EmployeeID`, `FirstName`, `LastName`, `Address`, `PhoneNumber`) VALUES
-(1234, 'Amy', 'Artist', '1 Big House', '07702234546'),
-(1235, 'Bev', 'Baker', '2 Big House', '07702234547'),
-(1236, 'Carol', 'Crispy', '3 Big House', '07702234548'),
-(1237, 'Deb', 'Downer', '4 Big House', '07702234549'),
-(1238, 'Eliza', 'Elbow', '5 Big House', '07702234550'),
-(1239, 'Fiona', 'Fartsalot', '6 Big House', '07702234551'),
-(1240, 'Gina', 'G', '7 Big House', '07702234552'),
-(1241, 'Hannah', 'Hatter', '8 Big House', '07702234553'),
-(1242, 'Irene', 'Icicles', '9 Big House', '07702234554');
+INSERT INTO `EMPLOYEES` (`EmployeeID`, `FirstName`, `LastName`, `AddressLine`, `Town`, `Postcode`, `PhoneNumber`, `EmailAddress`, `Password`) VALUES
+(1234, 'Amy', 'Artist', '1 Big House', 'Hull', 'LS11 5NS', '07702234546', 'test@email.com', 'Password1'),
+(1235, 'Bev', 'Baker', '2 Big House', 'Hull', 'LS12 5NS', '07702234547', 'test2@email.com', 'Password2'),
+(1236, 'Carol', 'Crispy', '3 Big House', 'Hull', 'LS11 6NS', '07702234548', 'test3@email.com', 'Password3'),
+(1237, 'Deb', 'Downer', '4 Big House', 'Hull', 'LS12 7NS', '07702234549', 'test4@email.com', 'Password4'),
+(1238, 'Eliza', 'Elbow', '5 Big House', 'Hull', 'LS11 8NS', '07702234550', 'test5@email.com', 'Password5'),
+(1239, 'Fiona', 'Fartsalot', '6 Big House', 'Hull', 'LS12 9NS', '07702234551', 'test6@email.com', 'Password6'),
+(1240, 'Gina', 'G', '7 Big House', 'Hull', 'LS15 1NS', '07702234552', 'test7@email.com', 'Password7'),
+(1241, 'Hannah', 'Hatter', '8 Big House', 'Hull', 'LS16 5NS', '07702234553', 'test8@email.com', 'Password8'),
+(1242, 'Irene', 'Icicles', '9 Big House', 'Hull', 'LS17 5NS', '07702234554', 'test9@email.com', 'Password9');
 
 -- --------------------------------------------------------
 
