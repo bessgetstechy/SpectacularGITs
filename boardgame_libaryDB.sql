@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 08, 2020 at 03:10 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.2
+-- Host: 127.0.0.1
+-- Generation Time: Mar 11, 2020 at 03:39 PM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 7.0.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,189 +19,278 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `boardgame_libaryDB`
+-- Database: `boardgame_library`
 --
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `BOARD_GAMES`
---
 
-CREATE TABLE `BOARD_GAMES` (
+CREATE TABLE `board_games` (
   `GameID` int(10) UNSIGNED NOT NULL,
-  `ThumbnailLink` text NOT NULL,
+  `ThumbnailLink` text,
   `Title` text NOT NULL,
-  `MinPlayers` tinyint(2) UNSIGNED NOT NULL,
-  `MaxPlayers` smallint(5) UNSIGNED NOT NULL,
-  `BestPlayers` smallint(5) UNSIGNED NOT NULL,
-  `MinAge` tinyint(3) UNSIGNED NOT NULL,
-  `PlayTime` smallint(5) UNSIGNED NOT NULL,
-  `GameMechanics` varchar(255) NOT NULL,
+  `MinPlayers` tinyint(2) UNSIGNED DEFAULT NULL,
+  `MaxPlayers` smallint(5) UNSIGNED DEFAULT NULL,
+  `BestPlayers` smallint(5) UNSIGNED DEFAULT NULL,
+  `MinAge` tinyint(3) UNSIGNED DEFAULT NULL,
+  `PlayTime` smallint(5) UNSIGNED DEFAULT NULL,
+  `GameMechanics` enum('Board','Dice','Cards','Memory','Other') NOT NULL,
   `Publisher` varchar(255) NOT NULL,
   `YearMade` smallint(5) UNSIGNED NOT NULL,
-  `Rating` float(3,2) UNSIGNED NOT NULL,
-  `NoUsersRated` int(11) UNSIGNED NOT NULL,
+  `Rating` float(3,2) UNSIGNED DEFAULT NULL,
+  `NoUsersRated` int(11) UNSIGNED DEFAULT NULL,
   `DifficultyRating` enum('Beginner','Intermediate','Expert') NOT NULL,
-  `Quality` enum('New','Used - like new','Used - very good','Used - good','Used - Acceptable','Used - Missing pieces') NOT NULL DEFAULT 'New',
-  `Playable` enum('Y','N') NOT NULL DEFAULT 'Y',
-  `Available` enum('Y','N') NOT NULL DEFAULT 'Y',
-  `CategoryName` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `Quality` enum('New','Used - like new','Used - very good','Used - good','Used - Acceptable','Used - Missing pieces') DEFAULT 'New',
+  `Playable` enum('Y','N') DEFAULT 'Y',
+  `Available` enum('Y','N') DEFAULT 'Y',
+  `CategoryName` varchar(255) DEFAULT NULL,
+  `DateAdded` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `BOARD_GAMES`
+-- Dumping data for table `board_games`
 --
 
-INSERT INTO `BOARD_GAMES` (`GameID`, `ThumbnailLink`, `Title`, `MinPlayers`, `MaxPlayers`, `BestPlayers`, `MinAge`, `PlayTime`, `GameMechanics`, `Publisher`, `YearMade`, `Rating`, `NoUsersRated`, `DifficultyRating`, `Quality`, `Playable`, `Available`, `CategoryName`) VALUES
-(1, '', 'Pandemic Legacy: Season 1', 2, 4, 4, 13, 60, 'Board', 'Z-Man Games', 2015, 8.63, 6876, 'Beginner', 'New', 'Y', 'Y', 'Abstract Strategy'),
-(2, '', 'Twilight Struggle', 2, 2, 2, 13, 180, 'Dice', 'GMT Games', 2005, 8.34, 21969, 'Intermediate', 'Used - like new', 'Y', 'Y', 'Acting'),
-(3, '', 'Terra Mystica', 2, 5, 4, 12, 150, 'Cards', 'Feuerland Spiele', 2012, 8.28, 17096, 'Expert', 'Used - very good', 'Y', 'Y', 'Action'),
-(4, '', 'Caverna: The Cave Farmers', 1, 7, 4, 12, 210, 'Board', 'Lookout Games', 2013, 8.24, 11594, 'Beginner', 'Used - good', 'Y', 'Y', 'Adult'),
-(5, '', 'Through the Ages: A Story of Civilization', 2, 4, 3, 12, 240, 'Dice', 'Czech Board Games', 2006, 8.18, 14039, 'Intermediate', 'Used - Acceptable', 'Y', 'Y', 'Adventure'),
-(6, '', 'Puerto Rico', 2, 5, 4, 12, 150, 'Memory', 'Ravensburger', 2002, 8.13, 42028, 'Expert', 'New', 'Y', 'Y', 'Animals'),
-(7, '', 'Agricola', 1, 5, 4, 12, 150, 'Board', 'Lookout Games', 2007, 8.10, 42032, 'Beginner', 'Used - like new', 'Y', 'Y', 'Area Control'),
-(8, '', 'The Castles of Burgundy', 2, 4, 2, 12, 90, 'Dice', 'alea', 2011, 8.10, 18186, 'Intermediate', 'Used - very good', 'Y', 'Y', 'Betting'),
-(9, '', 'Mage Knight Board Game', 1, 4, 2, 14, 150, 'Cards', 'WizKids Games', 2011, 8.15, 14256, 'Expert', 'Used - good', 'Y', 'Y', 'Bluffing'),
-(10, '', 'Star Wars: Imperial Assault', 2, 5, 5, 14, 120, 'Board', 'Asterion Press', 2014, 8.32, 6340, 'Beginner', 'Used - Acceptable', 'Y', 'Y', 'Card Game'),
-(11, '', 'Android: Netrunner', 2, 2, 2, 14, 45, 'Dice', 'Z-Man Games', 2012, 8.11, 16854, 'Intermediate', 'New', 'Y', 'Y', 'Celebrity'),
-(12, '', 'Eclipse', 2, 6, 4, 14, 200, 'Cards', 'GMT Games', 2011, 8.05, 17081, 'Expert', 'Used - like new', 'Y', 'Y', 'Children\'s Game'),
-(13, '', 'Power Grid', 2, 6, 4, 12, 120, 'Board', 'Feuerland Spiele', 2004, 7.98, 36631, 'Beginner', 'Used - very good', 'Y', 'Y', 'City Building'),
-(14, '', 'War of the Ring (second edition)', 2, 4, 2, 13, 150, 'Dice', 'Lookout Games', 2012, 8.34, 4516, 'Intermediate', 'Used - good', 'Y', 'Y', 'Co-operative Play'),
-(15, '', '7 Wonders: Duel', 2, 2, 2, 10, 30, 'Memory', 'Czech Board Games', 2015, 8.23, 5490, 'Expert', 'Used - Acceptable', 'Y', 'Y', 'Collaborative'),
-(16, '', 'Robinson Crusoe: Adventures on the Cursed Island', 1, 4, 3, 14, 180, 'Board', 'Ravensburger', 2012, 8.05, 12609, 'Beginner', 'New', 'Y', 'Y', 'Comic Book'),
-(17, '', 'Brass', 3, 4, 4, 13, 180, 'Dice', 'Lookout Games', 2007, 8.04, 9386, 'Intermediate', 'Used - like new', 'Y', 'Y', 'Deduction'),
-(18, '', 'Le Havre', 1, 5, 3, 12, 200, 'Cards', 'alea', 2008, 7.96, 16776, 'Expert', 'Used - very good', 'Y', 'Y', 'Dexterity'),
-(19, '', 'Codenames', 2, 8, 6, 14, 15, 'Board', 'WizKids Games', 2015, 8.03, 10438, 'Beginner', 'Used - good', 'Y', 'Y', 'Dice'),
-(20, '', 'Tzolk\'in: The Mayan Calendar', 2, 4, 4, 13, 90, 'Dice', 'Asterion Press', 2012, 7.97, 13791, 'Intermediate', 'Used - Acceptable', 'Y', 'Y', 'Economic'),
-(21, '', 'Dead of Winter: A Crossroads Game', 2, 5, 4, 14, 210, 'Cards', 'Z-Man Games', 2014, 8.00, 13574, 'Expert', 'New', 'Y', 'Y', 'Educational'),
-(22, '', 'Through the Ages: A New Story of Civilization', 2, 4, 3, 14, 240, 'Board', 'GMT Games', 2015, 9.10, 1413, 'Beginner', 'Used - like new', 'Y', 'Y', 'Fantasy'),
-(23, '', 'Blood Rage', 2, 4, 4, 13, 90, 'Dice', 'Feuerland Spiele', 2015, 8.32, 3624, 'Intermediate', 'Used - very good', 'Y', 'Y', 'Farming'),
-(24, '', '7 Wonders', 2, 7, 4, 10, 30, 'Memory', 'Lookout Games', 2010, 7.86, 40874, 'Expert', 'Used - good', 'Y', 'Y', 'Fighting'),
-(25, '', 'Caylus', 2, 5, 3, 12, 150, 'Board', 'Czech Board Games', 2005, 7.89, 19977, 'Beginner', 'Used - Acceptable', 'Y', 'Y', 'Grid Movement'),
-(26, '', 'Keyflower', 2, 6, 4, 12, 120, 'Dice', 'Ravensburger', 2012, 7.98, 8186, 'Intermediate', 'New', 'Y', 'Y', 'Humor'),
-(27, '', 'Dominion: Intrigue', 2, 4, 3, 13, 30, 'Cards', 'Lookout Games', 2009, 7.83, 20405, 'Expert', 'Used - like new', 'Y', 'Y', 'Industry'),
-(28, '', 'Dominant Species', 2, 6, 4, 14, 240, 'Board', 'alea', 2010, 7.88, 11014, 'Beginner', 'Used - very good', 'Y', 'Y', 'Maze'),
-(29, '', 'Eldritch Horror', 1, 8, 4, 14, 240, 'Dice', 'WizKids Games', 2013, 7.94, 10471, 'Intermediate', 'Used - good', 'Y', 'Y', 'Memory'),
-(30, '', 'Star Wars: X-Wing Miniatures Game', 2, 4, 2, 14, 45, 'Cards', 'Asterion Press', 2012, 7.92, 12866, 'Expert', 'Used - Acceptable', 'Y', 'Y', 'Movies'),
-(31, '', 'Race for the Galaxy', 2, 4, 2, 12, 60, 'Board', 'Z-Man Games', 2007, 7.79, 30257, 'Beginner', 'New', 'Y', 'Y', 'Murder/Mystery'),
-(32, '', 'El Grande', 2, 5, 5, 12, 120, 'Dice', 'GMT Games', 1995, 7.82, 16600, 'Intermediate', 'Used - like new', 'Y', 'Y', 'Music'),
-(33, '', 'Twilight Imperium (Third Edition)', 3, 6, 6, 12, 240, 'Memory', 'Feuerland Spiele', 2005, 7.89, 12849, 'Expert', 'Used - very good', 'Y', 'Y', 'Mythology'),
-(34, '', 'Lords of Waterdeep', 2, 5, 4, 12, 120, 'Board', 'Lookout Games', 2012, 7.81, 22480, 'Beginner', 'Used - good', 'Y', 'Y', 'Negotiation'),
-(35, '', 'Roll for the Galaxy', 2, 5, 4, 13, 45, 'Dice', 'Czech Board Games', 2014, 7.91, 7696, 'Intermediate', 'Used - Acceptable', 'Y', 'Y', 'Network Building'),
-(36, '', 'Battlestar Galactica', 3, 6, 5, 10, 240, 'Cards', 'Ravensburger', 2008, 7.81, 22081, 'Expert', 'New', 'Y', 'Y', 'Novel-based'),
-(37, '', 'Five Tribes', 1, 4, 2, 13, 80, 'Board', 'Lookout Games', 2014, 7.84, 10434, 'Beginner', 'Used - like new', 'Y', 'Y', 'Number'),
-(38, '', 'Dominion', 2, 4, 3, 13, 30, 'Dice', 'alea', 2008, 7.75, 47423, 'Intermediate', 'Used - very good', 'Y', 'Y', 'Paper-and-Pencil'),
-(39, '', 'Tigris & Euphrates', 2, 4, 4, 12, 90, 'Cards', 'WizKids Games', 1997, 7.75, 18501, 'Expert', 'Used - good', 'Y', 'Y', 'Partnerships'),
-(40, '', 'The Resistance: Avalon', 5, 10, 8, 13, 30, 'Board', 'Asterion Press', 2012, 7.80, 11479, 'Beginner', 'Used - Acceptable', 'Y', 'Y', 'Party Game'),
-(41, '', 'The Voyages of Marco Polo', 2, 4, 4, 12, 100, 'Dice', 'Z-Man Games', 2015, 8.03, 4259, 'Intermediate', 'New', 'Y', 'Y', 'Pattern Building'),
-(42, '', 'War of the Ring (first edition)', 2, 4, 2, 12, 180, 'Memory', 'GMT Games', 2004, 7.84, 8486, 'Expert', 'Used - like new', 'Y', 'Y', 'Pirates'),
-(43, '', 'Patchwork', 2, 2, 2, 8, 30, 'Board', 'Feuerland Spiele', 2014, 7.87, 6885, 'Beginner', 'Used - very good', 'Y', 'Y', 'Player Elimination'),
-(44, '', 'Castles of Mad King Ludwig', 1, 4, 4, 13, 90, 'Dice', 'Lookout Games', 2014, 7.83, 7670, 'Intermediate', 'Used - good', 'Y', 'Y', 'Point to Point Movement'),
-(45, '', 'Concordia', 2, 5, 4, 13, 100, 'Memory', 'Czech Board Games', 2013, 7.88, 5950, 'Expert', 'Used - Acceptable', 'Y', 'Y', 'Political'),
-(46, '', 'Trajan', 2, 4, 4, 12, 90, 'Board', 'Ravensburger', 2011, 7.83, 7672, 'Beginner', 'New', 'Y', 'Y', 'Popular Culture'),
-(47, '', 'T.I.M.E Stories', 2, 4, 4, 12, 90, 'Dice', 'Lookout Games', 2015, 8.25, 2609, 'Intermediate', 'Used - like new', 'Y', 'Y', 'Prehistoric'),
-(48, '', 'Russian Railroads', 2, 4, 4, 12, 120, 'Cards', 'alea', 2013, 7.85, 6426, 'Expert', 'Used - very good', 'Y', 'Y', 'Press Your Luck'),
-(49, '', 'Pandemic', 2, 4, 4, 8, 90, 'Board', 'WizKids Games', 2008, 7.66, 48702, 'Beginner', 'Used - good', 'Y', 'Y', 'Print & Play'),
-(50, '', 'Crokinole', 2, 4, 2, 8, 30, 'Dice', 'Asterion Press', 1998, 7.80, 6667, 'Intermediate', 'Used - Acceptable', 'Y', 'Y', 'Puzzle'),
-(51, '', 'A Game of Thrones: The Board Game (Second Edition)', 3, 6, 6, 14, 240, 'Memory', 'Z-Man Games', 2011, 7.77, 13489, 'Expert', 'New', 'Y', 'Y', 'Racing'),
-(52, '', 'Descent: Journeys in the Dark (Second Edition)', 2, 5, 5, 14, 120, 'Board', 'GMT Games', 2012, 7.79, 10838, 'Beginner', 'Used - like new', 'Y', 'Y', 'Radio'),
-(53, '', 'Troyes', 2, 4, 3, 12, 90, 'Dice', 'Feuerland Spiele', 2010, 7.74, 9497, 'Intermediate', 'Used - very good', 'Y', 'Y', 'Role Playing'),
-(54, '', 'Nations', 1, 5, 3, 14, 200, 'Cards', 'Lookout Games', 2013, 7.82, 6390, 'Expert', 'Used - good', 'Y', 'Y', 'Secret Agents'),
-(55, '', 'Ora et Labora', 1, 4, 3, 13, 180, 'Board', 'Czech Board Games', 2011, 7.80, 6486, 'Beginner', 'Used - Acceptable', 'Y', 'Y', 'Simulation'),
-(56, '', 'Mage Wars Arena', 2, 2, 2, 13, 90, 'Dice', 'Ravensburger', 2012, 7.95, 5101, 'Intermediate', 'New', 'Y', 'Y', 'Simultaneous Action'),
-(57, '', 'Orléans', 2, 4, 4, 12, 90, 'Cards', 'Lookout Games', 2014, 8.03, 3306, 'Expert', 'Used - like new', 'Y', 'Y', 'Single Player'),
-(58, '', 'Stone Age', 2, 4, 4, 10, 90, 'Board', 'alea', 2008, 7.64, 25414, 'Beginner', 'Used - very good', 'Y', 'Y', 'Spin and Move'),
-(59, '', 'Commands & Colors: Ancients', 2, 2, 2, 12, 60, 'Dice', 'WizKids Games', 2006, 7.82, 6286, 'Intermediate', 'Used - good', 'Y', 'Y', 'Sports'),
-(60, '', 'Suburbia', 1, 4, 3, 8, 90, 'Memory', 'Asterion Press', 2012, 7.70, 11330, 'Expert', 'Used - Acceptable', 'Y', 'Y', 'Storytelling'),
-(61, '', 'Sherlock Holmes Consulting Detective', 1, 8, 2, 10, 120, 'Dice', 'Z-Man Games', 1981, 7.83, 5561, 'Beginner', 'New', 'Y', 'Y', 'Teen'),
-(62, '', 'Paths of Glory', 2, 2, 2, 14, 480, 'Cards', 'GMT Games', 1999, 8.02, 3243, 'Intermediate', 'Used - like new', 'Y', 'Y', 'Territory Building'),
-(63, '', 'Legendary Encounters: An Alien Deck Building Game', 1, 5, 3, 17, 45, 'Board', 'Feuerland Spiele', 2014, 7.97, 3950, 'Expert', 'Used - very good', 'Y', 'Y', 'Tile Placement'),
-(64, '', 'Alchemists', 2, 4, 4, 14, 120, 'Dice', 'Lookout Games', 2014, 7.84, 6052, 'Beginner', 'Used - good', 'Y', 'Y', 'Trivia'),
-(65, '', 'Star Realms', 2, 2, 2, 12, 20, 'Memory', 'Czech Board Games', 2014, 7.69, 11883, 'Intermediate', 'Used - Acceptable', 'Y', 'Y', 'TV'),
-(66, '', 'Combat Commander: Europe', 2, 2, 2, 12, 180, 'Board', 'Ravensburger', 2006, 7.93, 3934, 'Expert', 'New', 'Y', 'Y', 'Video Game Theme'),
-(67, '', 'Kemet', 2, 5, 4, 13, 120, 'Dice', 'Lookout Games', 2012, 7.78, 6395, 'Beginner', 'Used - like new', 'Y', 'Y', 'Voting'),
-(68, '', 'Railways of the World', 2, 6, 5, 10, 120, 'Cards', 'alea', 2005, 7.71, 8771, 'Intermediate', 'Used - very good', 'Y', 'Y', 'Wargame'),
-(69, '', 'Goa', 2, 4, 4, 12, 90, 'Board', 'WizKids Games', 2004, 7.68, 8953, 'Expert', 'Used - good', 'Y', 'Y', 'Word Game'),
-(70, '', 'Steam', 3, 5, 4, 10, 90, 'Dice', 'Asterion Press', 2009, 7.71, 7190, 'Beginner', 'Used - Acceptable', 'Y', 'Y', 'Worker Placement'),
-(71, '', 'Chaos in the Old World', 3, 4, 4, 13, 120, 'Memory', 'Z-Man Games', 2009, 7.69, 9669, 'Intermediate', 'New', 'Y', 'Y', 'World War I'),
-(72, '', 'Fields of Arle', 1, 2, 2, 13, 120, 'Board', 'GMT Games', 2014, 8.33, 1830, 'Expert', 'Used - like new', 'Y', 'Y', 'World War II'),
-(73, '', 'Ticket to Ride: Europe', 2, 5, 4, 8, 60, 'Dice', 'Feuerland Spiele', 2005, 7.60, 28521, 'Beginner', 'Used - very good', 'Y', 'Y', 'Zombies'),
-(74, '', 'The Princes of Florence', 2, 5, 5, 12, 100, 'Memory', 'Lookout Games', 2000, 7.62, 12421, 'Intermediate', 'Used - good', 'Y', 'Y', 'Abstract Strategy'),
-(75, '', 'Age of Steam', 1, 6, 4, 13, 120, 'Board', 'Czech Board Games', 2002, 7.72, 6264, 'Expert', 'Used - Acceptable', 'Y', 'Y', 'Acting'),
-(76, '', 'Splendor', 2, 4, 3, 10, 30, 'Dice', 'Ravensburger', 2014, 7.59, 18230, 'Beginner', 'New', 'Y', 'Y', 'Action'),
-(77, '', 'Cosmic Encounter', 3, 5, 5, 12, 120, 'Cards', 'Lookout Games', 2008, 7.61, 15088, 'Intermediate', 'Used - like new', 'Y', 'Y', 'Adult'),
-(78, '', 'Viticulture', 2, 6, 3, 13, 90, 'Board', 'alea', 2013, 7.86, 4010, 'Expert', 'Used - very good', 'Y', 'Y', 'Adventure'),
-(79, '', 'Summoner Wars: Master Set', 2, 4, 2, 9, 30, 'Dice', 'WizKids Games', 2011, 7.70, 7485, 'Beginner', 'Used - good', 'Y', 'Y', 'Animals'),
-(80, '', 'Go', 2, 2, 2, 8, 90, 'Cards', 'Asterion Press', 2001, 7.70, 10187, 'Intermediate', 'Used - Acceptable', 'Y', 'Y', 'Area Control'),
-(81, '', 'Imperial Settlers', 1, 4, 2, 10, 90, 'Board', 'Z-Man Games', 2014, 7.68, 7587, 'Expert', 'New', 'Y', 'Y', 'Betting'),
-(82, '', 'Tichu', 3, 10, 4, 10, 60, 'Dice', 'GMT Games', 1991, 7.63, 9469, 'Beginner', 'Used - like new', 'Y', 'Y', 'Bluffing'),
-(83, '', 'The Lord of the Rings: The Card Game', 1, 4, 2, 13, 60, 'Memory', 'Feuerland Spiele', 2011, 7.64, 12136, 'Intermediate', 'Used - very good', 'Y', 'Y', 'Card Game'),
-(84, '', 'Hannibal: Rome vs. Carthage', 2, 2, 2, 12, 200, 'Board', 'Lookout Games', 1996, 7.83, 4077, 'Expert', 'Used - good', 'Y', 'Y', 'Celebrity'),
-(85, '', 'Lewis & Clark', 1, 5, 3, 14, 120, 'Dice', 'Czech Board Games', 2013, 7.67, 6669, 'Beginner', 'Used - Acceptable', 'Y', 'Y', 'Children\'s Game'),
-(86, '', 'Village', 2, 4, 4, 12, 90, 'Cards', 'Ravensburger', 2011, 7.59, 10930, 'Intermediate', 'New', 'Y', 'Y', 'City Building'),
-(87, '', 'Hansa Teutonica', 2, 5, 5, 12, 90, 'Board', 'Lookout Games', 2009, 7.64, 7190, 'Expert', 'Used - like new', 'Y', 'Y', 'Co-operative Play'),
-(88, '', 'Ticket to Ride: Nordic Countries', 2, 3, 3, 8, 60, 'Dice', 'alea', 2007, 7.68, 6666, 'Beginner', 'Used - very good', 'Y', 'Y', 'Collaborative'),
-(89, '', 'Runewars', 2, 4, 4, 14, 180, 'Cards', 'WizKids Games', 2010, 7.74, 5722, 'Intermediate', 'Used - good', 'Y', 'Y', 'Comic Book'),
-(90, '', 'Shogun', 3, 5, 4, 12, 150, 'Board', 'Asterion Press', 2006, 7.60, 9502, 'Expert', 'Used - Acceptable', 'Y', 'Y', 'Deduction'),
-(91, '', 'Arcadia Quest', 2, 4, 4, 13, 60, 'Dice', 'Z-Man Games', 2014, 8.08, 2463, 'Beginner', 'New', 'Y', 'Y', 'Dexterity'),
-(92, '', 'Space Alert', 1, 5, 4, 12, 30, 'Memory', 'GMT Games', 2008, 7.58, 10454, 'Intermediate', 'Used - like new', 'Y', 'Y', 'Dice'),
-(93, '', 'Age of Empires III: The Age of Discovery', 2, 5, 4, 10, 120, 'Board', 'Feuerland Spiele', 2007, 7.61, 8290, 'Expert', 'Used - very good', 'Y', 'Y', 'Economic'),
-(94, '', 'La Granja', 1, 4, 3, 12, 120, 'Dice', 'Lookout Games', 2014, 7.93, 2806, 'Beginner', 'Used - good', 'Y', 'Y', 'Educational'),
-(95, '', 'Imperial', 2, 6, 4, 13, 180, 'Cards', 'Czech Board Games', 2006, 7.64, 6766, 'Intermediate', 'Used - Acceptable', 'Y', 'Y', 'Fantasy'),
-(96, '', 'Ticket to Ride', 2, 5, 4, 8, 60, 'Memory', 'Ravensburger', 2004, 7.50, 40106, 'Expert', 'New', 'Y', 'Y', 'Farming'),
-(97, '', 'Jaipur', 2, 2, 2, 12, 30, 'Memory', 'Lookout Games', 2009, 7.54, 12624, 'Beginner', 'Used - like new', 'Y', 'Y', 'Fighting'),
-(98, '', 'Dungeon Petz', 2, 4, 4, 13, 90, 'Memory', 'alea', 2011, 7.63, 6893, 'Intermediate', 'Used - very good', 'Y', 'Y', 'Grid Movement'),
-(99, '', 'Istanbul', 2, 5, 4, 10, 60, 'Dice', 'WizKids Games', 2014, 7.62, 7267, 'Expert', 'Used - good', 'Y', 'Y', 'Humor');
+INSERT INTO `board_games` (`GameID`, `ThumbnailLink`, `Title`, `MinPlayers`, `MaxPlayers`, `BestPlayers`, `MinAge`, `PlayTime`, `GameMechanics`, `Publisher`, `YearMade`, `Rating`, `NoUsersRated`, `DifficultyRating`, `Quality`, `Playable`, `Available`, `CategoryName`, `DateAdded`) VALUES
+(1, 'https://images-na.ssl-images-amazon.com/images/I/61rvNPPum1L._AC_SY400_.jpg', 'Pandemic Legacy: Season 1', 2, 4, 4, 13, 60, 'Board', 'Z-Man Games', 2015, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Strategy', '2020-03-01'),
+(2, 'https://cdn.shopify.com/s/files/1/0800/4331/products/Twilight_Struggle_grande.jpg?v=1552754194', 'Twilight Struggle', 2, 2, 2, 13, 180, 'Board', 'GMT Games', 2005, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Wargame', '2020-03-07'),
+(3, 'https://scale.coolshop-cdn.com/product-media.coolshop-cdn.com/AE7R6F/bd553b5d883b4cc899821bbc110b5e16.jpg/f/terra-mystica-braetspil-engelsk.jpg', 'Terra Mystica', 2, 5, 4, 12, 150, 'Board', 'Feuerland Spiele', 2012, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Strategy', '2020-03-01'),
+(4, 'https://cdn.shopify.com/s/files/1/1381/2481/products/canva-photo-editor_3.png?v=1571306900', 'Caverna: The Cave Farmers', 1, 7, 4, 12, 210, 'Board', 'Lookout Games', 2013, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Animals', '2020-03-01'),
+(5, 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQamBud2cZxqc31GM9QZVn2zuihYlKS459ZeQt94qE4A0Jr6GzD', 'Through the Ages: A Story of Civilization', 2, 4, 3, 12, 240, 'Dice', 'Czech Board Games', 2006, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Civilization', '2020-03-01'),
+(6, 'https://img.grouponcdn.com/stores/3iUAhmjfuXN4x3WzM3u8eXcz4j4x/storespi1566741-1000x600/v1/c700x420.jpg', 'Puerto Rico', 2, 5, 4, 12, 150, 'Board', 'Ravensburger ', 2002, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'City Building', '2020-03-02'),
+(7, 'https://images-na.ssl-images-amazon.com/images/I/91QYEiZW0iL._AC_SY679_.jpg', 'Agricola', 1, 5, 4, 12, 150, 'Memory', 'Lookout Games', 2007, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Strategy', '2020-03-02'),
+(8, 'https://cdn11.bigcommerce.com/s-ohr394tcms/images/stencil/1280x1280/products/69407/159123/81ALqSnd1QL._AC_SL1500___98134.1578571521.jpg?c=1&imbypass=on', 'The Castles of Burgundy', 2, 4, 2, 12, 90, 'Board', 'alea', 2011, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Economic', '2020-03-02'),
+(9, 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQU0GbS3gf1mqJ7pdL59SxXs5E5Kq5lQ9fEyJgdyi8pKnvebSEW', 'Mage Knight Board Game', 1, 4, 2, 14, 150, 'Dice', 'WizKids Games', 2011, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Role Playing', '2020-03-02'),
+(10, 'https://images-na.ssl-images-amazon.com/images/I/6118P6WA-zL._AC_.jpg', 'Star Wars: Imperial Assault', 2, 5, 5, 14, 120, 'Board', 'Asterion Press', 2014, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Fantasy', '2020-03-07'),
+(11, 'https://images-na.ssl-images-amazon.com/images/I/519CVRT008L._AC_SX466_.jpg', 'Android: Netrunner', 2, 2, 2, 14, 45, 'Dice', 'Z-Man Games', 2012, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Space', '2020-03-02'),
+(12, 'https://i.ebayimg.com/images/g/bAwAAOSwudBdM12g/s-l600.jpg', 'Eclipse', 2, 6, 4, 14, 200, 'Cards', 'GMT Games', 2011, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Space', '2020-03-07'),
+(13, 'https://images-na.ssl-images-amazon.com/images/I/918rhIM6GRL._AC_SX425_.jpg', 'Power Grid', 2, 6, 4, 12, 120, 'Board', 'Feuerland Spiele', 2004, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Strategy', '2020-03-07'),
+(14, 'https://images-na.ssl-images-amazon.com/images/I/61cQ2uW5yEL._SL1000_.jpg', 'War of the Ring (second edition)', 2, 4, 2, 13, 150, 'Dice', 'Lookout Games', 2012, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Wargame', '2020-03-02'),
+(15, 'https://images-na.ssl-images-amazon.com/images/I/81lmPZm3XEL._SL1500_.jpg', '7 Wonders', 2, 2, 2, 10, 30, 'Board', 'Czech Board Games', 2015, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Civilization', '2020-03-07'),
+(16, 'https://images-na.ssl-images-amazon.com/images/I/71l3a3QT0yL._SL1500_.jpg', 'Robinson Crusoe: Adventures on the Cursed Island', 1, 4, 3, 14, 180, 'Board', 'Ravensburger ', 2012, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Family', '2020-03-06'),
+(17, 'https://images-na.ssl-images-amazon.com/images/I/51QkyYS%2B98L._SL500_AC_SS350_.jpg', 'Brass', 3, 4, 4, 13, 180, 'Dice', 'Lookout Games', 2007, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Economic', '2020-03-06'),
+(18, 'https://www.board-game.co.uk/wp-content/uploads/2017/02/Le-Havre-2.jpg', 'Le Havre', 1, 5, 3, 12, 200, 'Board', 'alea', 2008, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Economic', '2020-03-07'),
+(19, 'https://images-na.ssl-images-amazon.com/images/I/71ZHkM7fHwL._AC_SL1000_.jpg', 'Codenames', 2, 8, 6, 14, 15, 'Cards', 'WizKids Games', 2015, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Spy', '2020-03-07'),
+(20, 'https://images-na.ssl-images-amazon.com/images/I/71x3%2Bjw3khL._AC_SY450_.jpg', 'Tzolk\'in: The Mayan Calendar', 2, 4, 4, 13, 90, 'Board', 'Asterion Press', 2012, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Economic', '2020-03-07'),
+(21, 'https://images-na.ssl-images-amazon.com/images/I/61MfnA37PKL._AC_SL1001_.jpg', 'Dead of Winter: A Crossroads Game', 2, 5, 4, 14, 210, 'Cards', 'Z-Man Games', 2014, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Survival', '2020-03-07'),
+(22, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfM-j7-4XxS_da8qXkWcKdkwJqJ-eszTNEYg3ChiQ5Lh7AUKmVeg&s', 'Through the Ages: A New Story of Civilization', 2, 4, 3, 14, 240, 'Dice', 'GMT Games', 2015, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Civilization', '2020-03-07'),
+(23, 'https://images-na.ssl-images-amazon.com/images/I/81pxNt1mY-L._SL1500_.jpg', 'Blood Rage', 2, 4, 4, 13, 90, 'Dice', 'Feuerland Spiele', 2015, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Wargame', '2020-03-07'),
+(24, 'https://images-na.ssl-images-amazon.com/images/I/61Ew47ufr-L._SL1000_.jpg', 'Caylus', 2, 5, 3, 12, 150, 'Board', 'Czech Board Games', 2005, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Civilization', '2020-03-07'),
+(25, 'https://cdn.shopify.com/s/files/1/0270/5480/1005/products/510yJMhB2mL_1024x1024.jpg?v=1572683962', 'Keyflower', 2, 6, 4, 12, 120, 'Board', 'Ravensburger ', 2012, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Economic', '2020-03-07'),
+(26, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxg0kO9xSsGFPY5Rh3aKqRkhPWBwS-_1_jPKcwXma7gg2vAJct5Q&s', 'Dominion: Intrigue', 2, 4, 3, 13, 30, 'Board', 'Lookout Games', 2009, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Detective', '2020-03-07'),
+(27, 'https://images-na.ssl-images-amazon.com/images/I/71jvwVl7cCL._SL1000_.jpg', 'Dominant Species', 2, 6, 4, 14, 240, 'Board', 'alea', 2010, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Fantasy', '2020-03-07'),
+(28, 'https://images-na.ssl-images-amazon.com/images/I/61ZpTXnZKmL.jpg', 'Eldritch Horror', 1, 8, 4, 14, 240, 'Dice', 'WizKids Games', 2013, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Horror', '2020-03-07'),
+(29, 'https://images-na.ssl-images-amazon.com/images/I/81JCwR9wkmL._SL1500_.jpg', 'Star Wars: X-Wing Miniatures Game', 2, 4, 2, 14, 45, 'Cards', 'Asterion Press', 2012, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Fantasy', '2020-03-07'),
+(30, 'https://images-na.ssl-images-amazon.com/images/I/815TUZmxgyL._SL1500_.jpg', 'Race for the Galaxy: The Gathering Storm', 2, 4, 2, 12, 60, 'Board', 'Z-Man Games', 2007, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Space', '2020-03-09'),
+(31, 'https://images-na.ssl-images-amazon.com/images/I/91d2joz5fqL._SL1500_.jpg', 'El Grande', 2, 5, 5, 12, 120, 'Dice', 'GMT Games', 1995, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Civilization', '2020-03-09'),
+(32, 'https://images-na.ssl-images-amazon.com/images/I/51j8wb1wWVL.jpg', 'Twilight Imperium (Third Edition)', 3, 6, 6, 12, 240, 'Board', 'Feuerland Spiele', 2005, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Horror', '2020-03-09'),
+(33, 'https://cdn.shopify.com/s/files/1/0921/7330/products/1_b15480a9-cde0-4e6f-af64-60bc322e8a46_1024x1024.JPG?v=1528540751', 'Lords of Waterdeep', 2, 5, 4, 12, 120, 'Board', 'Lookout Games', 2012, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Economic', '2020-03-09'),
+(34, 'https://images-na.ssl-images-amazon.com/images/I/81LLUVpgb0L._SL1500_.jpg', 'Roll for the Galaxy', 2, 5, 4, 13, 45, 'Dice', 'Czech Board Games', 2014, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Space', '2020-03-09'),
+(35, 'https://images-na.ssl-images-amazon.com/images/I/71eh6fPWZlL._SL1115_.jpg', 'Battlestar Galactica', 3, 6, 5, 10, 240, 'Cards', 'Ravensburger ', 2008, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Space', '2020-03-09'),
+(36, 'https://images-na.ssl-images-amazon.com/images/I/81vyiJm8SmL._SL1500_.jpg', 'Five Tribes', 1, 4, 2, 13, 80, 'Board', 'Lookout Games', 2014, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Civilization', '2020-03-09'),
+(37, 'https://images-na.ssl-images-amazon.com/images/I/81dMVC551jL._SL1500_.jpg', 'Dominion', 2, 4, 3, 13, 30, 'Dice', 'alea', 2008, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Adventure', '2020-03-09'),
+(38, 'https://images-na.ssl-images-amazon.com/images/I/81BobvyYtPL._SL1061_.jpg', 'Tigris & Euphrates', 2, 4, 4, 12, 90, 'Cards', 'WizKids Games', 1997, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'City Building', '2020-03-09'),
+(39, 'https://images-na.ssl-images-amazon.com/images/I/71pdB5D3XKL._SL1159_.jpg', 'The Resistance: Avalon', 5, 10, 8, 13, 30, 'Board', 'Asterion Press', 2012, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Wargame', '2020-03-09'),
+(40, 'https://images.zmangames.com/filer_public/1a/3d/1a3d7542-cb1a-4bc6-b21c-ec94f1ebee3e/zm7590_box_front.png', 'The Voyages of Marco Polo', 2, 4, 4, 12, 100, 'Dice', 'Z-Man Games', 2015, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'City Building', '2020-03-09'),
+(41, 'https://images-na.ssl-images-amazon.com/images/I/61cQ2uW5yEL._SL1000_.jpg', 'War of the Ring (first edition)', 2, 4, 2, 12, 180, 'Cards', 'GMT Games', 2004, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Wargame', '2020-03-09'),
+(42, 'https://images-na.ssl-images-amazon.com/images/I/91Cgq7cGmdL._SL1500_.jpg', 'Patchwork', 2, 2, 2, 8, 30, 'Memory', 'Feuerland Spiele', 2014, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Strategy', '2020-03-09'),
+(43, 'https://images-na.ssl-images-amazon.com/images/I/81oPItAnpGL._SL1279_.jpg', 'Castles of Mad King Ludwig', 1, 4, 4, 13, 90, 'Board', 'Lookout Games', 2014, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Adventure', '2020-03-09'),
+(44, 'https://images-na.ssl-images-amazon.com/images/I/71AdsoGQ9aL._SL1342_.jpg', 'Concordia', 2, 5, 4, 13, 100, 'Board', 'Czech Board Games', 2013, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Political', '2020-03-09'),
+(45, 'https://images-na.ssl-images-amazon.com/images/I/81M84IL07VL._SL1500_.jpg', 'Trajan', 2, 4, 4, 12, 90, 'Board', 'Ravensburger ', 2011, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Civilization', '2020-03-09'),
+(46, 'https://images-na.ssl-images-amazon.com/images/I/41JvwtabEPL.jpg', 'T.I.M.E Stories', 2, 4, 4, 12, 90, 'Memory', 'Lookout Games', 2015, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Space', '2020-03-09'),
+(47, 'https://images-na.ssl-images-amazon.com/images/I/91X%2BRwvyfNL._SL1500_.jpg', 'Russian Railroads', 2, 4, 4, 12, 120, 'Board', 'alea', 2013, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Economic', '2020-03-09'),
+(48, 'https://images-na.ssl-images-amazon.com/images/I/814F5EyoMoL._SL1500_.jpg', 'Pandemic', 2, 4, 4, 8, 90, 'Board', 'WizKids Games', 2008, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Strategy', '2020-03-09'),
+(49, 'https://images-na.ssl-images-amazon.com/images/I/71IbTD5%2BkGL._SL1000_.jpg', 'Plague Inc.', 2, 4, 2, 8, 60, 'Board', 'Ndemic Creations', 2017, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Strategy', '2020-03-09'),
+(50, 'https://images-na.ssl-images-amazon.com/images/I/61Dh-B5RjhL.jpg', 'A Game of Thrones: The Board Game (Second Edition)', 3, 6, 6, 14, 240, 'Board', 'Z-Man Games', 2011, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'TV/Film', '2020-03-10'),
+(51, 'https://images-na.ssl-images-amazon.com/images/I/6170ECLB%2BiL.jpg', 'Descent: Journeys in the Dark (Second Edition)', 2, 5, 5, 14, 120, 'Board', 'GMT Games', 2012, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Adventure', '2020-03-10'),
+(52, 'https://images-na.ssl-images-amazon.com/images/I/91OPWEX9PCL._SY879_.jpg', 'Troyes', 2, 4, 3, 12, 90, 'Dice', 'Feuerland Spiele', 2010, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Civilization', '2020-03-10'),
+(53, 'https://images-na.ssl-images-amazon.com/images/I/81tVtpW1kjL._SL1500_.jpg', 'Nations', 1, 5, 3, 14, 200, 'Board', 'Lookout Games', 2013, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Civilization', '2020-03-10'),
+(54, 'https://images-na.ssl-images-amazon.com/images/I/81mIkXtk3LL._SL1500_.jpg', 'Risk: Game of Thrones', 2, 7, 4, 13, 180, 'Board', 'USAopoly', 2017, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Strategy', '2020-03-10'),
+(55, 'https://images-na.ssl-images-amazon.com/images/I/618CpWH3QoL.jpg', 'Mage Wars Arena', 2, 2, 2, 13, 90, 'Cards', 'Ravensburger ', 2012, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Battle', '2020-03-10'),
+(56, 'https://images-na.ssl-images-amazon.com/images/I/91utEiBrPwL._SL1500_.jpg', 'Orl?ans', 2, 4, 4, 12, 90, 'Cards', 'Lookout Games', 2014, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Civilization', '2020-03-10'),
+(57, 'https://images-na.ssl-images-amazon.com/images/I/712qhFTnFRL._SL1241_.jpg', 'Stone Age', 2, 4, 4, 10, 90, 'Cards', 'alea', 2008, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Family', '2020-03-10'),
+(58, 'https://images-na.ssl-images-amazon.com/images/I/71xpoAtLMzL._SL1500_.jpg', 'Quick And Dirty', 2, 20, 8, 17, 20, 'Cards', 'Quick and Dirty', 2017, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Adult', '2020-03-10'),
+(59, 'https://images-na.ssl-images-amazon.com/images/I/71C%2BUbh1X7L._SL1289_.jpg', 'Suburbia', 1, 4, 3, 8, 90, 'Board', 'Asterion Press', 2012, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Economic', '2020-03-10'),
+(60, 'https://images-na.ssl-images-amazon.com/images/I/51qMXocAQzL.jpg', 'Sherlock Holmes Consulting Detective', 1, 8, 2, 10, 120, 'Board', 'Z-Man Games', 1981, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Detective', '2020-03-10'),
+(61, 'https://images-na.ssl-images-amazon.com/images/I/718AYbKcKhL._SL1000_.jpg', 'Legendary Encounters: An Alien Deck Building Game', 1, 5, 3, 17, 45, 'Board', 'Feuerland Spiele', 2014, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Fantasy', '2020-03-10'),
+(62, 'https://images-na.ssl-images-amazon.com/images/I/81daYOwPDIL._SL1500_.jpg', 'Alchemists', 2, 4, 4, 14, 120, 'Dice', 'Lookout Games', 2014, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Fantasy', '2020-03-10'),
+(63, 'https://images-na.ssl-images-amazon.com/images/I/813ZO-iNIyL._SL1500_.jpg', 'Star Realms', 2, 2, 2, 12, 20, 'Memory', 'Czech Board Games', 2014, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Space', '2020-03-10'),
+(64, 'https://images-na.ssl-images-amazon.com/images/I/71uY1JtSJsL._SL1500_.jpg', 'Kemet', 2, 5, 4, 13, 120, 'Dice', 'Lookout Games', 2012, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Family', '2020-03-10'),
+(65, 'https://images-na.ssl-images-amazon.com/images/I/91fkNzakHfL._SL1500_.jpg', 'Railways of the World', 2, 6, 5, 10, 120, 'Cards', 'alea', 2005, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Economic', '2020-03-10'),
+(66, 'https://images-na.ssl-images-amazon.com/images/I/51ly62yg69L.jpg', 'Steam Park', 3, 5, 4, 10, 90, 'Board', 'Asterion Press', 2009, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Economic', '2020-03-10'),
+(67, 'https://images-na.ssl-images-amazon.com/images/I/71DEZ6qjFkL._SL1100_.jpg', 'Chaos in the Old World', 3, 4, 4, 13, 120, 'Memory', 'Z-Man Games', 2009, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'World War I', '2020-03-10'),
+(68, 'https://images-na.ssl-images-amazon.com/images/I/71YsXdBVaVL._SL1054_.jpg', 'Ticket to Ride: Europe', 2, 5, 4, 8, 60, 'Dice', 'Feuerland Spiele', 2005, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Economic', '2020-03-10'),
+(69, 'https://images-na.ssl-images-amazon.com/images/I/613n3Gky43L._SL1024_.jpg', 'Splendor', 2, 4, 3, 10, 30, 'Dice', 'Ravensburger ', 2014, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Action', '2020-03-10'),
+(70, 'https://images-na.ssl-images-amazon.com/images/I/91oWzz%2BNCKL._SL1500_.jpg', 'Cosmic Encounter', 3, 5, 5, 12, 120, 'Cards', 'Lookout Games', 2008, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Space', '2020-03-10'),
+(71, 'https://images-na.ssl-images-amazon.com/images/I/91ZtO2M6LUL._SL1500_.jpg', 'Viticulture', 2, 6, 3, 13, 90, 'Board', 'alea', 2013, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Adventure', '2020-03-10'),
+(72, 'https://images-na.ssl-images-amazon.com/images/I/71HVFNiW76L._SL1200_.jpg', 'Summoner Wars: Master Set', 2, 4, 2, 9, 30, 'Dice', 'WizKids Games', 2011, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Wargame', '2020-03-10'),
+(73, 'https://images-na.ssl-images-amazon.com/images/I/61XzrfTuNHL.jpg', 'Imperial Settlers', 1, 4, 2, 10, 90, 'Board', 'Z-Man Games', 2014, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Civilization', '2020-03-10'),
+(74, 'https://images-na.ssl-images-amazon.com/images/I/71vcfZIlXQL._SL1265_.jpg', 'Tichu', 3, 10, 4, 10, 60, 'Dice', 'GMT Games', 1991, 0.00, 0, 'Beginner', 'Used - like new', 'Y', 'Y', 'Bluffing', '2020-03-10'),
+(75, 'https://images-na.ssl-images-amazon.com/images/I/A11E7WvlwBL._SL1500_.jpg', 'The Lord of the Rings: The Card Game', 1, 4, 2, 13, 60, 'Cards', 'Feuerland Spiele', 2011, 0.00, 0, 'Intermediate', 'Used - very good', 'Y', 'Y', 'TV/Film', '2020-03-10'),
+(76, 'https://images-na.ssl-images-amazon.com/images/I/81%2BLs%2BCfC-L._SL1500_.jpg', 'Village', 2, 4, 4, 12, 90, 'Cards', 'Ravensburger ', 2011, 0.00, 0, 'Intermediate', 'Used - good', 'Y', 'Y', 'City Building', '2020-03-10'),
+(77, 'https://images-na.ssl-images-amazon.com/images/I/61Ro1-IPnRL._SL1000_.jpg', 'Ticket to Ride: Nordic Countries', 2, 3, 3, 8, 60, 'Dice', 'alea', 2007, 0.00, 0, 'Beginner', 'Used - good', 'Y', 'Y', 'Family', '2020-03-10'),
+(78, 'https://images-na.ssl-images-amazon.com/images/I/A1SD-UDU7NL._SL1500_.jpg', 'Runewars', 2, 4, 4, 14, 180, 'Cards', 'WizKids Games', 2010, 0.00, 0, 'Intermediate', 'Used - good', 'Y', 'Y', 'History', '2020-03-10'),
+(79, 'https://images-na.ssl-images-amazon.com/images/I/81kMQEV3%2BJL._SL1500_.jpg', 'Shogun', 3, 5, 4, 12, 150, 'Board', 'Asterion Press', 2006, 0.00, 0, 'Expert', 'Used - Acceptable', 'Y', 'Y', 'Wargame', '2020-03-10'),
+(80, 'https://images-na.ssl-images-amazon.com/images/I/81dymvItddL._SL1500_.jpg', 'Arcadia Quest', 2, 4, 4, 13, 60, 'Dice', 'Z-Man Games', 2014, 0.00, 0, 'Beginner', 'Used - Acceptable', 'Y', 'Y', 'Adventure', '2020-03-11'),
+(81, 'https://images-na.ssl-images-amazon.com/images/I/71F6XyOZfiL._SL1000_.jpg', 'Space Alert', 1, 5, 4, 12, 30, 'Memory', 'GMT Games', 2008, 0.00, 0, 'Intermediate', 'Used - Acceptable', 'Y', 'Y', 'Space', '2020-03-11'),
+(82, 'https://images-na.ssl-images-amazon.com/images/I/81C4v0qlsTL._SL1500_.jpg', 'La Granja', 1, 4, 3, 12, 120, 'Dice', 'Lookout Games', 2014, 0.00, 0, 'Beginner', 'Used - Acceptable', 'Y', 'Y', 'Educational', '2020-03-11'),
+(83, 'https://images-na.ssl-images-amazon.com/images/I/61yX5d7PYAL.jpg', 'Imperial', 2, 6, 4, 13, 180, 'Cards', 'Czech Board Games', 2006, 0.00, 0, 'Intermediate', 'Used - Acceptable', 'Y', 'Y', 'Fantasy', '2020-03-11'),
+(84, 'https://images-na.ssl-images-amazon.com/images/I/81bLWZK-RNL._SL1500_.jpg', 'Ticket to Ride', 2, 5, 4, 8, 60, 'Memory', 'Ravensburger ', 2004, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Farming', '2020-03-11'),
+(85, 'https://images-na.ssl-images-amazon.com/images/I/61ZL-IOIeHL._SL1024_.jpg', 'Jaipur', 2, 2, 2, 12, 30, 'Memory', 'Lookout Games', 2009, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Fighting', '2020-03-11'),
+(86, 'https://images-na.ssl-images-amazon.com/images/I/91kVsbpPdkL._SL1500_.jpg', 'Dungeon Petz', 2, 4, 4, 13, 90, 'Memory', 'alea', 2011, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Grid Movement', '2020-03-11'),
+(87, 'https://images-na.ssl-images-amazon.com/images/I/91r4cW9taLL._SL1500_.jpg', 'Istanbul', 2, 5, 4, 10, 60, 'Dice', 'WizKids Games', 2014, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Humour', '2020-03-11'),
+(89, 'https://vignette.wikia.nocookie.net/rulebook/images/4/49/Monopoly.jpg/revision/latest/scale-to-width-down/340?cb=20121230024934', 'Monopoly', 2, 6, 4, 8, 60, 'Board', 'Hasbro', 2004, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Property', '2020-03-11'),
+(90, 'https://images-na.ssl-images-amazon.com/images/I/71QAHYplT6L._SX425_.jpg', 'Monopoly: Millennial Edition', 2, 6, 4, 8, 60, 'Board', 'Hasbro', 2019, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Property', '2020-03-11'),
+(91, 'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcT-awVZqK2oG1Z9RqudRMSNSw07S6UlN7_xJXrlBFLsZSHubB6QQMQ&usqp=Cac', 'Scrabble', 2, 4, 2, 12, 60, 'Board', 'Mattel', 2002, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Word', '2020-03-11'),
+(92, 'https://images-na.ssl-images-amazon.com/images/I/91wWOu4f4JL._SL1500_.jpg', 'Risk', 2, 4, 4, 4, 90, 'Board', 'Hasbro', 2012, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Strategy', '2020-03-11'),
+(93, 'https://images-na.ssl-images-amazon.com/images/I/71LeXIucWnL._SL1024_.jpg', 'Boggle', 1, 8, 4, 8, 20, 'Other', 'Hasbro', 2013, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Word', '2020-03-11'),
+(94, 'https://target.scene7.com/is/image/Target/GUEST_8503e7b9-c167-46f5-a556-488ef71a90fa?wid=488&hei=488&fmt=pjpeg', 'Uno', 2, 10, 4, 7, 20, 'Cards', 'Mattel', 2010, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Party Game', '2020-03-11'),
+(95, 'https://images-na.ssl-images-amazon.com/images/I/71yp2-Y12LL._SL1500_.jpg', 'Scrabble Junior', 2, 4, 4, 6, 60, 'Board', 'Mattel', 2013, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Word', '2020-03-11'),
+(96, 'https://johnlewis.scene7.com/is/image/JohnLewis/238038429?$rsp-pdp-port-1080$', 'Cards Against Humanity', 4, 20, 8, 17, 30, 'Cards', 'Cards Against Humanity', 2016, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Party Game', '2020-03-11'),
+(97, 'https://images-na.ssl-images-amazon.com/images/I/91dtt4NiicL._SL1500_.jpg', 'The Game of Life', 2, 4, 4, 8, 60, 'Board', 'Hasbro', 2009, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Family', '2020-03-11'),
+(98, 'https://images-na.ssl-images-amazon.com/images/I/810bBCmZ9LL._SL1425_.jpg', 'Trivial Pursuit', 2, 4, 4, 16, 60, 'Board', 'Hasbro', 2012, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Quiz', '2020-03-11'),
+(99, 'https://images-na.ssl-images-amazon.com/images/I/91FUEVnjT4L._SL1500_.jpg', 'Cluedo', 2, 4, 4, 12, 90, 'Board', 'Hasbro', 2009, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Detective', '2020-03-11'),
+(100, 'https://i.ebayimg.com/images/g/d10AAOSwF1hcpIh7/s-l300.jpg', 'Rummikub', 2, 4, 4, 8, 60, 'Board', 'Ephraim Hertzano', 2010, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Number', '2020-03-11'),
+(101, 'https://images-na.ssl-images-amazon.com/images/I/51dpHnvLPmL.jpg', 'Battleship', 2, 2, 2, 7, 30, 'Board', 'Hasbro', 2013, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Wargame', '2020-03-11'),
+(102, 'https://images-na.ssl-images-amazon.com/images/I/81ElYmjpV5L._SL1500_.jpg', 'Jenga', 2, 8, 4, 6, 20, 'Other', 'Hasbro', 2018, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Strategy', '2020-03-11'),
+(103, 'https://images-na.ssl-images-amazon.com/images/I/91cpdEOYabL._SL1500_.jpg', 'Twister', 2, 4, 4, 12, 30, 'Other', 'Hasbro', 2009, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Party Game', '2020-03-11'),
+(104, 'https://images-na.ssl-images-amazon.com/images/I/811TiElBuML._SL1500_.jpg', 'Connect 4', 2, 4, 4, 8, 30, 'Other', 'Hasbro', 2002, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Family', '2020-03-11'),
+(105, 'https://images-na.ssl-images-amazon.com/images/I/91%2B1WPgQyhL._SL1500_.jpg', 'Operation', 1, 4, 4, 4, 30, 'Board', 'Hasbro', 2006, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Family', '2020-03-11'),
+(106, 'https://digitalcontent.api.tesco.com/v2/media/ghs/2cab8531-d108-4928-8345-4b07ccebca20/snapshotimagehandler_812613376.jpeg?h=540&w=540', 'Frustration', 2, 4, 4, 8, 60, 'Board', 'Hasbro', 2008, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Family', '2020-03-11'),
+(107, 'https://images-na.ssl-images-amazon.com/images/I/A1mbXP1a0VL._SL1500_.jpg', 'Hungry Hungry Hippos', 2, 4, 4, 4, 15, 'Board', 'Hasbro', 2017, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Family', '2020-03-11'),
+(108, 'https://images-na.ssl-images-amazon.com/images/I/51QJcm3mJDL.jpg', 'Mouse Trap', 2, 4, 4, 6, 60, 'Board', 'Hasbro', 2001, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Family', '2020-03-11'),
+(109, 'https://images-na.ssl-images-amazon.com/images/I/91Bh9jUyRYL._SL1500_.jpg', 'Cranium', 4, 4, 4, 16, 60, 'Board', 'Hasbro', 2017, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Family', '2020-03-11'),
+(110, 'https://images-na.ssl-images-amazon.com/images/I/81NZ6o5W6hL._SL1500_.jpg', 'Articulate', 4, 20, 6, 12, 60, 'Board', 'Drumond Park', 2002, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Family', '2020-03-11'),
+(111, 'https://images-na.ssl-images-amazon.com/images/I/91Wa4-xnpwL._SL1500_.jpg', 'The Really Nasty Horse Racing Game', 2, 6, 4, 13, 60, 'Board', 'Rascals', 2013, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Betting', '2020-03-11'),
+(112, 'https://images-na.ssl-images-amazon.com/images/I/619-DP2ub1L._AC_UL320_SR270,320_.jpg', 'Concept', 4, 12, 6, 12, 60, 'Board', 'Repos', 2014, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Family', '2020-03-11'),
+(113, 'https://images-na.ssl-images-amazon.com/images/I/517xpShIkOL.jpg', 'Super Mario Chess', 2, 2, 2, 8, 60, 'Board', 'USAopoly', 2009, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Logic', '2020-03-11'),
+(114, 'https://images-na.ssl-images-amazon.com/images/I/81K-77bFI0L._SL1500_.jpg', 'Pictionary', 2, 4, 4, 12, 60, 'Board', 'Mattel', 2015, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Family', '2020-03-11'),
+(115, 'https://images-na.ssl-images-amazon.com/images/I/816dVZLI%2BsL._SL1500_.jpg', 'Axis & Allies', 2, 5, 5, 12, 60, 'Board', 'Avalon Hill', 2017, 0.00, 0, 'Expert', 'New', 'Y', 'Y', 'Wargame', '2020-03-11'),
+(116, 'https://static.theworks.co.uk/images/5052089018501_Z.jpg', 'Snakes and Ladders', 2, 4, 4, 6, 30, 'Board', 'Luptons', 2008, 0.00, 0, 'Beginner', 'New', 'Y', 'Y', 'Family', '2020-03-11'),
+(117, 'https://johnlewis.scene7.com/is/image/JohnLewis/238051320?$rsp-pdp-port-640$', 'What Do You Meme?', 4, 20, 6, 17, 30, 'Cards', 'What Do You Meme', 2016, 0.00, 0, ‘Beginner’, ‘New’, 'Y', 'Y', 'Humour', '2020-03-11'),
+(118, 'https://johnlewis.scene7.com/is/image/JohnLewis/238155599?$rsp-pdp-port-640$', 'Drunk, Stoned or Stupid', 4, 20, 6, 17, 30, 'Cards', 'DSS Games', 2015, 0.00, 0, ‘Beginner’, ‘New’, 'Y', 'Y', 'Humour', '2020-03-11'),
+(119, 'https://johnlewis.scene7.com/is/image/JohnLewis/233496415?$rsp-pdp-port-1080$', 'Mr & Mrs: Family edition', 2, 8, 4, 10, 60, 'Board', 'Rascals', 2012, 0.00, 0, ‘Beginner’, ‘New’, 'Y', 'Y', 'Family', '2020-03-11'),
+(120, 'https://www.mattelgames.com/sites/mattel_games/files/2017-09/UNO-ColorADD_Side_web.jpg', 'Uno: Colorblind Accessible Edition', 2, 10, 4, 7, 15, 'Cards', 'Mattel', 2018, 0.00, 0, ‘Beginner’, ‘New’, 'Y', 'Y', 'Family', '2020-03-11'),
+(121, 'https://images-na.ssl-images-amazon.com/images/I/71UUDAPpKWL._SL1500_.jpg', 'Exploding Kittens', 5, 20, 6, 14, 30, 'Cards', 'The Oatmeal', 2015, 0.00, 0, ‘Beginner’, ‘New’, 'Y', 'Y', 'Humour', '2020-03-11'),
+(122, 'https://images-na.ssl-images-amazon.com/images/I/61ZLYBlRXmL._SL1000_.jpg', 'Obama Llama 2: Family Board Game', 4, 20, 6, 14, 15, 'Cards', 'Big Potato', 2019, 0.00, 0, ‘Beginner’, ‘New’, 'Y', 'Y', 'Humour', '2020-03-11'),
+(123, 'https://images-na.ssl-images-amazon.com/images/I/61EGFvJ%2BLjL._SL1000_.jpg', 'Weird Things Humans Search For', 3, 20, 6, 14, 20, 'Cards', 'Big Potato', 2018, 0.00, 0, ‘Beginner’, ‘New’, 'Y', 'Y', 'Humour', '2020-03-11'),
+(124, 'https://images-na.ssl-images-amazon.com/images/I/715s5mCq7TL._SL1024_.jpg', 'Obama llama', 3, 20, 6, 14, 20, 'Cards', 'Big Potato', 2016, 0.00, 0, ‘Beginner’, ‘New’, 'Y', 'Y', 'Humour', '2020-03-11'),
+(125, 'https://images-na.ssl-images-amazon.com/images/I/81pHMp%2ByebL._SL1500_.jpg', 'Stupid Deaths', 2, 6, 4, 12, 60, 'Board', 'University Games', 2018, 0.00, 0, ‘Beginner’, ‘New’, 'Y', 'Y', 'Humour', '2020-03-11'),
+(126, 'https://images-na.ssl-images-amazon.com/images/I/71RFQ7fsy0L._SL1500_.jpg', 'What Do You Meme? Basic Expansion Pack', 4, 20, 6, 17, 30, 'Cards', 'What Do You Meme', 2017, 0.00, 0, ‘Beginner’, ‘New’, 'Y', 'Y', 'Humour', '2020-03-11'),
+(127, 'https://images-na.ssl-images-amazon.com/images/I/71Vh35WiK3L._SL1500_.jpg', 'Rummikub Large Number Edition', 2, 4, 4, 8, 60, 'Board', 'Ephraim Hertzano', 2010, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Number', '2020-03-11'),
+(128, 'https://images-na.ssl-images-amazon.com/images/I/51nDvRulkvL.jpg', 'Trivial Pursuit: Family Edition', 2, 6, 4, 4, 60, 'Board', 'Hasbro', 2014, 0.00, 0, ‘Beginner’, ‘New’, 'Y', 'Y', 'Family', '2020-03-11'),
+(129, 'https://images-na.ssl-images-amazon.com/images/I/81kTx%2BhNbYL._SL1500_.jpg', 'Jumanji', 2, 4, 4, 3, 60, 'Board', 'Jumanji', 2006, 0.00, 0, ‘Beginner’, ‘New’, 'Y', 'Y', 'Family', '2020-03-11'),
+(130, 'https://johnlewis.scene7.com/is/image/JohnLewis/237635203?$rsp-pdp-port-640$', 'Monopoly: Cheaters Edition', 2, 6, 4, 8, 60, 'Board', 'Hasbro', 2018, 0.00, 0, 'Intermediate', 'New', 'Y', 'Y', 'Property', '2020-03-11');
+
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `BORROW_HISTORY`
+-- Table structure for table `borrow_history`
 --
 
-CREATE TABLE `BORROW_HISTORY` (
+CREATE TABLE `borrow_history` (
   `RecordID` int(10) UNSIGNED NOT NULL,
-  `BorrowedDate` date NOT NULL,
-  `ReturnDate` date NOT NULL,
+  `BorrowedDate` date DEFAULT NULL,
+  `DueDate` date DEFAULT NULL,
+  `ReturnDate` date DEFAULT NULL,
   `GameID` int(10) UNSIGNED NOT NULL,
   `MemberID` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `BORROW_HISTORY`
+-- Dumping data for table `borrow_history`
 --
 
-INSERT INTO `BORROW_HISTORY` (`RecordID`, `BorrowedDate`, `ReturnDate`, `GameID`, `MemberID`) VALUES
-(1, '2020-02-02', '2020-02-09', 1, 1),
-(2, '2020-02-02', '2020-02-09', 2, 3),
-(3, '2020-02-02', '2020-02-09', 3, 5),
-(4, '2020-02-02', '2020-02-09', 4, 7),
-(5, '2020-02-03', '2020-02-10', 5, 9),
-(6, '2020-02-03', '2020-02-10', 6, 11),
-(7, '2020-02-03', '2020-02-10', 7, 12),
-(8, '2020-02-04', '2020-02-11', 4, 4),
-(9, '2020-02-04', '2020-02-11', 1, 1),
-(10, '2020-02-04', '2020-02-11', 2, 2),
-(11, '2020-02-21', '2020-02-28', 3, 3),
-(12, '2020-02-21', '2020-02-28', 4, 4),
-(13, '2020-02-21', '2020-02-28', 5, 5),
-(14, '2020-02-28', '2020-03-06', 6, 6),
-(15, '2020-02-28', '2020-03-06', 7, 1),
-(16, '2020-02-28', '2020-03-06', 8, 3),
-(17, '2020-02-28', '2020-03-06', 9, 2),
-(18, '2020-02-28', '2020-03-06', 10, 6),
-(19, '2020-02-28', '2020-03-06', 11, 7),
-(20, '2020-02-28', '2020-03-06', 12, 8),
-(21, '2020-02-28', '2020-03-06', 1, 13);
+INSERT INTO `borrow_history` (`RecordID`, `BorrowedDate`, `DueDate`, `ReturnDate`, `GameID`, `MemberID`) VALUES
+(1, '2020-02-02', '2020-02-09', '2020-02-09', 54, 1),
+(2, '2020-02-02', '2020-02-09', '2020-02-09', 37, 2),
+(3, '2020-02-02', '2020-02-09', '2020-02-09', 41, 3),
+(4, '2020-02-02', '2020-02-09', '2020-02-09', 80, 4),
+(5, '2020-02-03', '2020-02-10', '2020-02-10', 17, 5),
+(6, '2020-02-03', '2020-02-10', '2020-02-10', 124, 2),
+(7, '2020-02-03', '2020-02-10', '2020-02-10', 26, 2),
+(8, '2020-02-04', '2020-02-11', '2020-02-11', 9, 3),
+(9, '2020-02-04', '2020-02-11', '2020-02-11', 87, 3),
+(10, '2020-02-04', '2020-02-11', '2020-02-11', 117, 7),
+(11, '2020-02-21', '2020-02-28', '2020-02-28', 117, 4),
+(12, '2020-02-21', '2020-02-28', '2020-02-28', 5, 4),
+(13, '2020-02-21', '2020-02-28', '2020-02-28', 14, 4),
+(14, '2020-02-28', '2020-03-06', '2020-03-06', 88, 4),
+(15, '2020-02-28', '2020-03-06', '2020-03-06', 40, 11),
+(16, '2020-02-28', '2020-03-06', '2020-03-06', 15, 4),
+(17, '2020-02-28', '2020-03-06', '2020-03-06', 34, 5),
+(18, '2020-02-28', '2020-03-06', '2020-03-06', 1, 5),
+(19, '2020-02-28', '2020-03-06', '2020-03-06', 53, 5),
+(20, '2020-02-28', '2020-03-06', '2020-03-06', 75, 5),
+(21, '2020-02-28', '2020-03-06', '2020-03-06', 118, 5),
+(22, '2020-03-01', '2020-03-08', '2020-03-08', 55, 5),
+(23, '2020-03-01', '2020-03-08', '2020-03-08', 15, 5),
+(24, '2020-03-01', '2020-03-08', '2020-03-08', 123, 5),
+(25, '2020-03-01', '2020-03-08', '2020-03-08', 96, 5),
+(26, '2020-03-02', '2020-03-09', '2020-03-09', 98, 5),
+(27, '2020-03-02', '2020-03-09', '2020-03-09', 104, 5),
+(28, '2020-03-02', '2020-03-09', '2020-03-09', 60, 5),
+(29, '2020-03-02', '2020-03-09', '2020-03-09', 30, 5),
+(30, '2020-03-02', '2020-03-09', '2020-03-09', 102, 2),
+(31, '2020-03-02', '2020-03-09', '2020-03-09', 93, 3),
+(32, '2020-03-02', '2020-03-09', '2020-03-09', 34, 8),
+(33, '2020-03-02', '2020-03-09', '2020-03-09', 57, 7),
+(34, '2020-03-02', '2020-03-09', '2020-03-09', 15, 5),
+(35, '2020-03-03', '2020-03-10', '2020-03-10', 38, 5),
+(36, '2020-03-03', '2020-03-10', '2020-03-10', 8, 5),
+(37, '2020-03-03', '2020-03-10', '2020-03-10', 46, 13),
+(38, '2020-03-03', '2020-03-10', '2020-03-10', 1, 5),
+(39, '2020-03-03', '2020-03-10', '2020-03-10', 82, 5),
+(40, '2020-03-03', '2020-03-10', '2020-03-10', 51, 5),
+(41, '2020-03-03', '2020-03-10', '2020-03-10', 14, 3),
+(42, '2020-03-03', '2020-03-10', '2020-03-10', 62, 5),
+(43, '2020-03-03', '2020-03-10', '2020-03-10', 58, 10),
+(44, '2020-03-04', '2020-03-11', NULL, 3, 1),
+(45, '2020-03-04', '2020-03-11', NULL, 129, 5),
+(46, '2020-03-04', '2020-03-11', NULL, 125, 11),
+(47, '2020-03-04', '2020-03-11', NULL, 27, 14),
+(48, '2020-03-04', '2020-03-11', NULL, 23, 15),
+(49, '2020-03-04', '2020-03-11', NULL, 4, 3),
+(50, '2020-03-04', '2020-03-11', NULL, 16, 15),
+(51, '2020-03-04', '2020-03-11', NULL, 92, 5),
+(52, '2020-03-04', '2020-03-11', NULL, 120, 6),
+(53, '2020-03-04', '2020-03-11', NULL, 113, 1),
+(54, '2020-03-04', '2020-03-11', NULL, 62, 13),
+(55, '2020-03-05', '2020-03-12', NULL, 84, 11),
+(56, '2020-03-05', '2020-03-12', NULL, 8, 2),
+(57, '2020-03-05', '2020-03-12', NULL, 122, 10),
+(58, '2020-03-05', '2020-03-12', NULL, 109, 6),
+(59, '2020-03-05', '2020-03-12', NULL, 33, 5),
+(60, '2020-03-05', '2020-03-12', NULL, 127, 5),
+(61, '2020-03-05', '2020-03-12', NULL, 92, 5),
+(62, '2020-03-05', '2020-03-12', NULL, 98, 11),
+(63, '2020-03-05', '2020-03-12', NULL, 98, 10),
+(64, '2020-03-05', '2020-03-12', NULL, 106, 4),
+(65, '2020-03-05', '2020-03-12', NULL, 101, 7),
+(66, '2020-03-05', '2020-03-12', NULL, 110, 3),
+(67, '2020-03-05', '2020-03-12', NULL, 67, 12),
+(68, '2020-06-05', '2020-06-12', NULL, 99, 14),
+(69, '2020-06-05', '2020-06-12', NULL, 96, 5),
+(70, '2020-06-05', '2020-06-12', NULL, 6, 2),
+(71, '2020-06-05', '2020-06-12', NULL, 15, 8),
+(72, '2020-06-05', '2020-06-12', NULL, 59, 7),
+(73, '2020-06-05', '2020-06-12', NULL, 41, 1),
+(74, '2020-06-05', '2020-06-12', NULL, 41, 12),
+(75, '2020-06-05', '2020-06-12', NULL, 18, 6),
+(76, '2020-06-05', '2020-06-12', NULL, 36, 13),
+(77, '2020-06-05', '2020-06-12', NULL, 79, 3),
+(78, '2020-06-05', '2020-06-12', NULL, 12, 15),
+(79, '2020-06-05', '2020-06-12', NULL, 35, 2),
+(80, '2020-06-05', '2020-06-12', NULL, 56, 13);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `EMPLOYEES`
+-- Table structure for table `employees`
 --
 
-CREATE TABLE `EMPLOYEES` (
+CREATE TABLE `employees` (
   `EmployeeID` smallint(5) UNSIGNED NOT NULL,
   `FirstName` varchar(50) NOT NULL,
   `LastName` varchar(50) NOT NULL,
@@ -214,310 +303,399 @@ CREATE TABLE `EMPLOYEES` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `EMPLOYEES`
+-- Dumping data for table `employees`
 --
 
-INSERT INTO `EMPLOYEES` (`EmployeeID`, `FirstName`, `LastName`, `AddressLine`, `Town`, `Postcode`, `PhoneNumber`, `EmailAddress`, `Password`) VALUES
-(1234, 'Amy', 'Artist', '1 Big House', 'Hull', 'LS11 5NS', '07702234546', 'test@email.com', 'Password1'),
-(1235, 'Bev', 'Baker', '2 Big House', 'Hull', 'LS12 5NS', '07702234547', 'test2@email.com', 'Password2'),
-(1236, 'Carol', 'Crispy', '3 Big House', 'Hull', 'LS11 6NS', '07702234548', 'test3@email.com', 'Password3'),
-(1237, 'Deb', 'Downer', '4 Big House', 'Hull', 'LS12 7NS', '07702234549', 'test4@email.com', 'Password4'),
-(1238, 'Eliza', 'Elbow', '5 Big House', 'Hull', 'LS11 8NS', '07702234550', 'test5@email.com', 'Password5'),
-(1239, 'Fiona', 'Fartsalot', '6 Big House', 'Hull', 'LS12 9NS', '07702234551', 'test6@email.com', 'Password6'),
-(1240, 'Gina', 'G', '7 Big House', 'Hull', 'LS15 1NS', '07702234552', 'test7@email.com', 'Password7'),
-(1241, 'Hannah', 'Hatter', '8 Big House', 'Hull', 'LS16 5NS', '07702234553', 'test8@email.com', 'Password8'),
-(1242, 'Irene', 'Icicles', '9 Big House', 'Hull', 'LS17 5NS', '07702234554', 'test9@email.com', 'Password9');
+INSERT INTO `employees` (`EmployeeID`, `FirstName`, `LastName`, `AddressLine`, `Town`, `Postcode`, `PhoneNumber`, `EmailAddress`, `Password`) VALUES
+(1, 'Amy', 'Artist', '1 Big House', 'Hull', 'LS11 5NS', '07702234546', 'test@email.com', 'Password1'),
+(2, 'Bev', 'Baker', '2 Big House', 'Hull', 'LS12 5NS', '07702234547', 'test2@email.com', 'Password2'),
+(3, 'Carol', 'Crispy', '3 Big House', 'Hull', 'LS11 6NS', '07702234548', 'test3@email.com', 'Password3'),
+(4, 'Deb', 'Downer', '4 Big House', 'Hull', 'LS12 7NS', '07702234549', 'test4@email.com', 'Password4'),
+(5, 'Eliza', 'Elbow', '5 Big House', 'Hull', 'LS11 8NS', '07702234550', 'test5@email.com', 'Password5'),
+(6, 'Fiona', 'Fartsalot', '6 Big House', 'Hull', 'LS12 9NS', '07702234551', 'test6@email.com', 'Password6'),
+(7, 'Gina', 'G', '7 Big House', 'Hull', 'LS15 1NS', '07702234552', 'test7@email.com', 'Password7'),
+(8, 'Hannah', 'Hatter', '8 Big House', 'Hull', 'LS16 5NS', '07702234553', 'test8@email.com', 'Password8'),
+(9, 'Irene', 'Icicles', '9 Big House', 'Hull', 'LS17 5NS', '07702234554', 'test9@email.com', 'Password9');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `GAME_CATEGORY`
+-- Table structure for table `game_category`
 --
 
-CREATE TABLE `GAME_CATEGORY` (
+CREATE TABLE `game_category` (
   `CategoryID` tinyint(3) UNSIGNED NOT NULL,
-  `CategoryName` tinytext DEFAULT NULL
+  `CategoryName` tinytext
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `GAME_CATEGORY`
+-- Dumping data for table `game_category`
 --
 
-INSERT INTO `GAME_CATEGORY` (`CategoryID`, `CategoryName`) VALUES
-(1, 'Abstract Strategy'),
-(2, 'Acting'),
-(3, 'Action'),
-(4, 'Adult'),
-(5, 'Adventure'),
-(6, 'Animals'),
-(7, 'Area Control'),
+INSERT INTO `game_category` (`CategoryID`, `CategoryName`) VALUES
+(1, 'Accessible'),
+(2, 'Action'),
+(3, 'Adult'),
+(4, 'Adventure'),
+(5, 'Animals'),
+(6, 'Apocalypse'),
+(7, 'Battle'),
 (8, 'Betting'),
 (9, 'Bluffing'),
 (10, 'Card Game'),
 (11, 'Celebrity'),
-(12, 'Children\'s Game'),
+(12, 'Children'),
 (13, 'City Building'),
-(14, 'Co-operative Play'),
-(15, 'Collaborative'),
-(16, 'Comic Book'),
-(17, 'Deduction'),
-(18, 'Dexterity'),
-(19, 'Dice'),
-(20, 'Economic'),
-(21, 'Educational'),
-(22, 'Fantasy'),
-(23, 'Farming'),
-(24, 'Fighting'),
-(25, 'Grid Movement'),
-(26, 'Humor'),
-(27, 'Industry'),
-(28, 'Maze'),
-(29, 'Memory'),
-(30, 'Movies'),
-(31, 'Murder/Mystery'),
-(32, 'Music'),
-(33, 'Mythology'),
-(34, 'Negotiation'),
-(35, 'Network Building'),
-(36, 'Novel-based'),
-(37, 'Number'),
-(38, 'Paper-and-Pencil'),
-(39, 'Partnerships'),
-(40, 'Party Game'),
-(41, 'Pattern Building'),
-(42, 'Pirates'),
-(43, 'Player Elimination'),
-(44, 'Point to Point Movement'),
-(45, 'Political'),
-(46, 'Popular Culture'),
-(47, 'Prehistoric'),
-(48, 'Press Your Luck'),
-(49, 'Print & Play'),
-(50, 'Puzzle'),
-(51, 'Racing'),
-(52, 'Radio'),
-(53, 'Role Playing'),
-(54, 'Secret Agents'),
-(55, 'Simulation'),
-(56, 'Simultaneous Action'),
-(57, 'Single Player'),
-(58, 'Spin and Move'),
-(59, 'Sports'),
-(60, 'Storytelling'),
-(61, 'Teen'),
-(62, 'Territory Building'),
-(63, 'Tile Placement'),
-(64, 'Trivia'),
-(65, 'TV'),
-(66, 'Video Game Theme'),
-(67, 'Voting'),
-(68, 'Wargame'),
-(69, 'Word Game'),
-(70, 'Worker Placement'),
-(71, 'World War I'),
-(72, 'World War II'),
-(73, 'Zombies');
+(14, 'Civilization'),
+(15, 'Comic Book'),
+(16, 'Detective'),
+(17, 'Dice'),
+(18, 'Economic'),
+(19, 'Educational'),
+(20, 'Family'),
+(21, 'Fantasy'),
+(22, 'Farming'),
+(23, 'Fighting'),
+(24, 'Grid Movement'),
+(25, 'History'),
+(26, 'Horror'),
+(27, 'Humour'),
+(28, 'Logic'),
+(29, 'Maze'),
+(30, 'Memory'),
+(31, 'Music'),
+(32, 'Mythology'),
+(33, 'Negotiation'),
+(34, 'Number'),
+(35, 'Party Game'),
+(36, 'Pirates'),
+(37, 'Player Elimination'),
+(38, 'Political'),
+(39, 'Popular Culture'),
+(40, 'Property'),
+(41, 'Puzzle'),
+(42, 'Quiz'),
+(43, 'Racing'),
+(44, 'Radio'),
+(45, 'Role Playing'),
+(46, 'Single Player'),
+(47, 'Space'),
+(48, 'Sports'),
+(49, 'Spy'),
+(50, 'Strategy'),
+(51, 'Survival'),
+(52, 'Teen'),
+(53, 'Town'),
+(54, 'Trivia'),
+(55, 'TV/Film'),
+(56, 'Video Game'),
+(57, 'Voting'),
+(58, 'Wargame'),
+(59, 'Word'),
+(60, 'Word Game'),
+(61, 'Worker Placement'),
+(62, 'World War I'),
+(63, 'World War II'),
+(64, 'Zombies');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `GAME_CATEGORY_LINK`
+-- Table structure for table `game_category_link`
 --
 
-CREATE TABLE `GAME_CATEGORY_LINK` (
-  `Category_to_game_ID` tinyint(3) UNSIGNED NOT NULL,
+CREATE TABLE `game_category_link` (
+  `LinkID` tinyint(3) UNSIGNED NOT NULL,
   `GameID` int(10) UNSIGNED NOT NULL,
-  `CategoryID` int(10) UNSIGNED NOT NULL
+  `CategoryID` tinyint(3) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `GAME_CATEGORY_LINK`
+-- Dumping data for table `game_category_link`
 --
 
-INSERT INTO `GAME_CATEGORY_LINK` (`Category_to_game_ID`, `GameID`, `CategoryID`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 1, 3),
-(4, 2, 2),
-(5, 3, 3),
-(6, 4, 4),
-(7, 5, 5),
-(8, 6, 6),
-(9, 7, 7),
-(10, 8, 1),
-(11, 9, 2),
-(12, 10, 3),
-(13, 11, 4),
-(14, 12, 5),
-(15, 13, 6),
-(16, 14, 7),
-(17, 15, 1),
-(18, 16, 2),
-(19, 17, 3),
-(20, 18, 4),
-(21, 19, 5),
-(22, 20, 6),
-(23, 21, 7),
-(24, 22, 1),
-(25, 23, 2),
-(26, 24, 3),
-(27, 25, 4),
-(28, 26, 5),
-(29, 27, 6),
-(30, 28, 7),
-(31, 29, 1),
-(32, 30, 2),
-(33, 31, 3),
-(34, 32, 4),
-(35, 33, 5),
-(36, 34, 6),
-(37, 35, 7),
-(38, 36, 1),
-(39, 37, 2),
-(40, 38, 3),
-(41, 39, 4),
-(42, 40, 5),
-(43, 41, 6),
-(44, 42, 7),
-(45, 43, 1),
-(46, 44, 2),
-(47, 45, 3),
-(48, 46, 4),
-(49, 47, 5),
-(50, 48, 6),
-(51, 49, 7),
-(52, 50, 1),
-(53, 51, 2),
-(54, 52, 3),
-(55, 53, 4),
-(56, 54, 5),
-(57, 55, 6),
-(58, 56, 7),
-(59, 57, 1),
-(60, 58, 2),
-(61, 59, 3),
-(62, 60, 4),
-(63, 61, 5),
-(64, 62, 6),
-(65, 63, 7),
-(66, 64, 1),
-(67, 65, 2),
-(68, 66, 3),
-(69, 67, 4),
-(70, 68, 5),
-(71, 69, 6),
-(72, 70, 7),
-(73, 71, 1),
-(74, 72, 2),
-(75, 73, 3),
-(76, 74, 4),
-(77, 75, 5),
-(78, 76, 6),
-(79, 77, 7),
-(80, 78, 1),
-(81, 79, 2),
-(82, 80, 3),
-(83, 81, 4),
-(84, 82, 5),
-(85, 83, 6),
-(86, 84, 7),
-(87, 85, 1),
-(88, 86, 2),
-(89, 87, 3),
-(90, 88, 4),
-(91, 89, 5),
-(92, 90, 6),
-(93, 91, 7),
-(94, 92, 1),
-(95, 93, 2),
-(96, 94, 3),
-(97, 95, 4),
-(98, 96, 5),
-(99, 97, 6),
-(100, 98, 7),
-(101, 99, 1),
-(102, 2, 3),
-(103, 2, 4),
-(104, 3, 6),
-(105, 3, 7);
+INSERT INTO `game_category_link` (`LinkID`, `GameID`, `CategoryID`) VALUES
+(1, 1, 50),
+(2, 1, 28),
+(3, 1, 6),
+(4, 2, 50),
+(5, 2, 58),
+(6, 2, 28),
+(7, 3, 50),
+(8, 4, 5),
+(9, 4, 20),
+(10, 5, 14),
+(11, 5, 25),
+(12, 6, 13),
+(13, 6, 13),
+(14, 6, 13),
+(15, 7, 50),
+(16, 7, 28),
+(17, 7, 25),
+(18, 8, 18),
+(19, 8, 14),
+(20, 8, 4),
+(21, 9, 45),
+(22, 9, 21),
+(23, 9, 4),
+(24, 9, 23),
+(25, 10, 21),
+(26, 10, 55),
+(27, 10, 47),
+(28, 11, 47),
+(29, 12, 47),
+(30, 13, 50),
+(31, 13, 18),
+(32, 13, 33),
+(33, 14, 58),
+(34, 15, 14),
+(35, 15, 4),
+(36, 15, 19),
+(37, 16, 20),
+(38, 17, 18),
+(39, 18, 18),
+(40, 18, 40),
+(41, 19, 49),
+(42, 20, 18),
+(43, 21, 52),
+(44, 22, 14),
+(45, 23, 58),
+(46, 24, 14),
+(47, 25, 18),
+(48, 26, 16),
+(49, 27, 21),
+(50, 28, 26),
+(51, 29, 21),
+(52, 30, 47),
+(53, 31, 14),
+(54, 32, 26),
+(55, 33, 18),
+(56, 34, 47),
+(57, 35, 47),
+(58, 36, 14),
+(59, 37, 4),
+(60, 38, 13),
+(61, 39, 58),
+(62, 40, 13),
+(63, 41, 58),
+(64, 42, 50),
+(65, 43, 4),
+(66, 44, 38),
+(67, 45, 14),
+(68, 46, 47),
+(69, 47, 18),
+(70, 47, 50),
+(71, 48, 50),
+(72, 48, 28),
+(73, 48, 6),
+(74, 49, 50),
+(75, 50, 55),
+(76, 51, 4),
+(77, 52, 14),
+(78, 52, 50),
+(79, 53, 14),
+(80, 53, 50),
+(81, 54, 50),
+(82, 54, 55),
+(83, 55, 7),
+(84, 56, 14),
+(85, 56, 50),
+(86, 57, 20),
+(87, 58, 3),
+(88, 58, 27),
+(89, 58, 35),
+(90, 59, 18),
+(91, 60, 16),
+(92, 61, 21),
+(93, 62, 21),
+(94, 63, 47),
+(95, 64, 19),
+(96, 65, 17),
+(97, 66, 17),
+(98, 67, 62),
+(99, 68, 17),
+(100, 69, 2),
+(101, 70, 49),
+(102, 71, 4),
+(103, 72, 60),
+(104, 73, 13),
+(105, 74, 8),
+(106, 75, 57),
+(107, 76, 12),
+(108, 77, 19),
+(109, 78, 24),
+(110, 79, 60),
+(111, 80, 4),
+(112, 81, 20),
+(113, 81, 47),
+(114, 82, 18),
+(115, 83, 20),
+(116, 84, 21),
+(117, 85, 22),
+(118, 86, 23),
+(119, 87, 26),
+(124, 89, 42),
+(125, 89, 18),
+(126, 89, 20),
+(127, 89, 40),
+(128, 90, 42),
+(129, 90, 18),
+(130, 90, 20),
+(131, 90, 40),
+(132, 91, 59),
+(133, 92, 52),
+(134, 92, 50),
+(135, 93, 59),
+(136, 93, 35),
+(137, 94, 10),
+(138, 94, 35),
+(139, 94, 20),
+(140, 95, 59),
+(141, 95, 35),
+(142, 95, 19),
+(143, 96, 27),
+(144, 96, 3),
+(145, 96, 35),
+(146, 96, 10),
+(147, 97, 20),
+(148, 98, 54),
+(149, 98, 20),
+(150, 98, 42),
+(151, 99, 20),
+(152, 99, 16),
+(153, 99, 35),
+(154, 100, 34),
+(155, 100, 20),
+(156, 101, 58),
+(157, 101, 50),
+(158, 102, 50),
+(159, 103, 35),
+(160, 104, 20),
+(161, 105, 20),
+(162, 106, 20),
+(163, 107, 20),
+(164, 108, 20),
+(165, 109, 20),
+(166, 110, 20),
+(167, 111, 8),
+(168, 111, 48),
+(169, 112, 20),
+(170, 113, 28),
+(171, 113, 56),
+(172, 114, 20),
+(173, 115, 58),
+(174, 116, 20),
+(175, 117, 27),
+(176, 117, 10),
+(177, 118, 27),
+(178, 118, 10),
+(179, 118, 3),
+(180, 119, 20),
+(181, 119, 10),
+(182, 120, 20),
+(183, 120, 1),
+(184, 120, 10),
+(185, 121, 27),
+(186, 121, 3),
+(187, 121, 10),
+(188, 122, 27),
+(189, 122, 10),
+(190, 123, 27),
+(191, 123, 10),
+(192, 123, 3),
+(193, 124, 27),
+(194, 124, 35),
+(195, 124, 10),
+(196, 124, 31),
+(197, 125, 27),
+(198, 125, 10),
+(199, 126, 27),
+(200, 126, 10),
+(201, 127, 34),
+(202, 127, 1),
+(203, 128, 20),
+(204, 128, 12),
+(205, 128, 54),
+(206, 129, 20);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `GAME_REVIEW`
+-- Table structure for table `game_review`
 --
 
-CREATE TABLE `GAME_REVIEW` (
+CREATE TABLE `game_review` (
   `ID` int(4) UNSIGNED NOT NULL,
-  `Rating` tinyint(3) UNSIGNED DEFAULT NULL,
+  `Rating` tinyint(2) UNSIGNED NOT NULL,
   `Review` varchar(254) DEFAULT NULL,
+  `ReviewDate` date NOT NULL,
   `MemberID` int(10) UNSIGNED NOT NULL,
   `GameID` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `GAME_REVIEW`
+-- Dumping data for table `game_review`
 --
 
-INSERT INTO `GAME_REVIEW` (`ID`, `Rating`, `Review`, `MemberID`, `GameID`) VALUES
-(1, 10, 'It was really good. ', 1, 1),
-(2, 1, 'I didn\'t like it. ', 2, 2),
-(3, 2, 'It was broken. ', 3, 5),
-(4, 9, 'I hope they make a sequel. ', 4, 9),
-(5, 1, 'Ruined the family holiday. ', 5, 10),
-(6, 10, 'Turns out I\'m a strategy genius.', 6, 12),
-(7, 9, 'So fun.', 7, 14),
-(8, 2, 'Who ever thought this would be a good game.', 8, 16),
-(9, 4, 'It was okay.', 9, 20),
-(10, 3, 'So boring.', 10, 22),
-(11, 1, 'Ended in tears. ', 11, 23),
-(12, 1, 'Ended in divorce.', 12, 25),
-(13, 8, 'Brought us all closer.', 13, 22),
-(14, 7, 'A real bonding experience. ', 14, 1),
-(15, 4, 'Wouldn\'t get again.', 15, 2),
-(16, 7, 'Great playing a pandemic game with all the news, felt I could take on the Coronavirus myself!', 1, 1),
-(17, 8, 'Loads of fun', 2, 2),
-(18, 8, 'Loved this game', 3, 5),
-(19, 9, 'Almost perfect - shame it had to end', 4, 9),
-(20, 10, 'THE BEST GAME EVER!!', 5, 10),
-(21, 5, 'Very average, not awful, just meh', 6, 12),
-(22, 6, 'Bit too young for us', 7, 14),
-(23, 7, 'Great activity for a rainy weekend in Wales', 8, 16),
-(24, 8, 'Daughter loved it!', 9, 20),
-(25, 7, 'We played it 15 times in a weekend, addictive', 10, 22),
-(26, 3, 'Fun for all the family, even grandma!', 11, 23),
-(27, 5, 'Game wasn\'t as new as advertised, but still fun.', 12, 25),
-(28, 4, 'Don\'t bother! Finished it in 15 minutes.', 13, 20),
-(29, 2, 'Almost as boring as lord of the rings.', 14, 22),
-(30, 7, 'Great fun, kids and adults had a great time.', 15, 23),
-(31, 5, 'Took a bit too long and was quite confusing, but ok once you got into it.', 1, 25),
-(32, 3, 'Very offensive, not one for Chruch Group', 2, 22),
-(33, 6, 'Wasn\'t very authentic but good fun all the same.', 3, 1),
-(34, 10, 'Better than the Twilight films!', 4, 2),
-(35, 4, 'Felt a bit too close to home playing a Pandemic game as Italians', 5, 1),
-(36, 4, 'Boring.', 6, 2),
-(37, 6, 'Ok, felt a bit long.', 7, 5),
-(38, 6, 'Not as good as the reviews said.', 8, 9),
-(39, 10, 'GREAT GAME!!', 9, 20),
-(40, 10, 'Loved it, challenging but we got the hang of it and played it all night.', 10, 22),
-(41, 9, 'Great, would reccomend.', 11, 23),
-(42, 10, 'Loved it, sad we have to return it.', 12, 25),
-(43, 6, 'Good fun, better suited for those with children.', 13, 22),
-(44, 8, 'Really great gameplay.', 14, 1),
-(45, 8, 'Best game we\'ve bought in ages, condition was a bit worn.', 15, 2),
-(46, 2, 'This game was NOT NEW!', 1, 1),
-(47, 4, 'Really good quality, shame the game was dull.', 2, 2),
-(48, 10, 'We all loved it and have bought it off Amazon.', 3, 5),
-(49, 2, 'Returned as faulty - never got to try the game.', 4, 9),
-(50, 5, 'Was a bit too grown up for my kid\'s 4th birthday.', 5, 1);
+INSERT INTO `game_review` (`ID`, `Rating`, `Review`, `ReviewDate`, `MemberID`, `GameID`) VALUES
+(1, 10, 'It was really good, better than the mobile game.', '2020-03-01', 1, 1),
+(2, 1, 'I didn\'t like it, didn\'t realise it would be so war heavy.', '2020-03-01', 2, 2),
+(3, 2, 'It was broken. Such a shame I wanted to play it for ages.', '2020-03-01', 3, 5),
+(4, 9, 'I hope they make a sequel. ', '2020-03-01', 4, 9),
+(5, 1, 'Ruined the family holiday after our son ran off thinking he was a Jedi', '2020-03-01', 5, 10),
+(6, 10, 'Turns out I am a strategy genius.', '2020-03-01', 6, 12),
+(7, 9, 'So fun.', '2020-03-01', 7, 14),
+(8, 2, 'Who ever thought this would be a good game.', '2020-03-01', 8, 16),
+(9, 4, 'It was okay.', '2020-03-01', 9, 20),
+(10, 3, 'So boring.', '2020-03-01', 10, 22),
+(11, 1, 'Ended in tears. ', '2020-03-01', 11, 23),
+(12, 1, 'Ended in divorce.', '2020-03-01', 12, 25),
+(13, 8, 'Brought us all closer.', '2020-03-01', 13, 22),
+(14, 7, 'A real bonding experience. ', '2020-03-01', 14, 1),
+(15, 4, 'Would not get again.', '2020-03-01', 15, 2),
+(16, 7, 'Great playing a pandemic game with all the news, felt I could take on the Coronavirus myself!', '2020-03-08', 1, 1),
+(17, 8, 'Loads of fun', '2020-03-08', 2, 2),
+(18, 8, 'Loved this game', '2020-03-08', 3, 5),
+(19, 9, 'Almost perfect - shame it had to end', '2020-03-08', 4, 9),
+(20, 10, 'THE BEST GAME EVER!!', '2020-03-08', 5, 10),
+(21, 5, 'Very average, not awful, just meh', '2020-03-08', 6, 12),
+(22, 6, 'Bit too young for us', '2020-03-08', 7, 14),
+(23, 7, 'Great activity for a rainy weekend in Wales', '2020-03-08', 8, 16),
+(24, 8, 'Daughter loved it!', '2020-03-08', 9, 20),
+(25, 7, 'We played it 15 times in a weekend, addictive', '2020-03-08', 10, 22),
+(26, 3, 'Fun for all the family, even grandma!', '2020-03-08', 11, 23),
+(27, 5, 'Game wasn\'t as new as advertised, but still fun.', '2020-03-08', 12, 25),
+(28, 4, 'Don\'t bother! Finished it in 15 minutes.', '2020-03-08', 13, 20),
+(29, 2, 'Almost as boring as lord of the rings.', '2020-03-08', 14, 22),
+(30, 7, 'Great fun, kids and adults had a great time.', '2020-03-08', 15, 23),
+(31, 5, 'Took a bit too long and was quite confusing, but ok once you got into it.', '2020-03-08', 1, 25),
+(32, 3, 'Very offensive, not one for Chruch Group', '2020-03-08', 2, 22),
+(33, 6, 'Wasn\'t very authentic but good fun all the same.', '2020-03-08', 3, 1),
+(34, 10, 'Better than the Twilight films!', '2020-03-08', 4, 2),
+(35, 4, 'Felt a bit too close to home playing a Pandemic game as Italians', '2020-03-08', 5, 1),
+(36, 4, 'Boring.', '2020-03-08', 6, 2),
+(37, 6, 'Ok, felt a bit long.', '2020-03-08', 7, 5),
+(38, 6, 'Not as good as the reviews said.', '2020-03-08', 8, 9),
+(39, 10, 'GREAT GAME!!', '2020-03-08', 9, 20),
+(40, 10, 'Loved it, challenging but we got the hang of it and played it all night.', '2020-03-08', 10, 22),
+(41, 9, 'Great, would reccomend.', '2020-03-08', 11, 23),
+(42, 10, 'Loved it, sad we have to return it.', '2020-03-08', 12, 25),
+(43, 6, 'Good fun, better suited for those with children.', '2020-03-08', 13, 22),
+(44, 8, 'Really great gameplay.', '2020-03-08', 14, 1),
+(45, 8, 'Best game we\'ve bought in ages, condition was a bit worn.', '2020-03-08', 15, 2),
+(46, 2, 'This game was NOT NEW!', '2020-03-08', 1, 1),
+(47, 4, 'Really good quality, shame the game was dull.', '2020-03-08', 2, 2),
+(48, 10, 'We all loved it and have bought it off Amazon.', '2020-03-08', 3, 5),
+(49, 2, 'Returned as faulty - never got to try the game.', '2020-03-08', 4, 9),
+(50, 5, 'Was a bit too grown up for my kid\'s 4th birthday.', '2020-03-08', 5, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `LIBRARY`
+-- Table structure for table `library`
 --
 
-CREATE TABLE `LIBRARY` (
+CREATE TABLE `library` (
   `LibraryID` tinyint(3) UNSIGNED NOT NULL,
   `Name` varchar(50) NOT NULL,
   `Address` varchar(255) NOT NULL,
@@ -526,19 +704,19 @@ CREATE TABLE `LIBRARY` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `LIBRARY`
+-- Dumping data for table `library`
 --
 
-INSERT INTO `LIBRARY` (`LibraryID`, `Name`, `Address`, `PhoneNumber`, `EmailAddress`) VALUES
+INSERT INTO `library` (`LibraryID`, `Name`, `Address`, `PhoneNumber`, `EmailAddress`) VALUES
 (1, 'Spectacular Library', 'Sky 1, Leeds Dock', '07702234621', 'librarian@spectacular_library.com');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `MEMBER`
+-- Table structure for table `member`
 --
 
-CREATE TABLE `MEMBER` (
+CREATE TABLE `member` (
   `MemberID` int(10) UNSIGNED NOT NULL,
   `FirstName` varchar(50) NOT NULL,
   `LastName` varchar(50) NOT NULL,
@@ -551,10 +729,10 @@ CREATE TABLE `MEMBER` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `MEMBER`
+-- Dumping data for table `member`
 --
 
-INSERT INTO `MEMBER` (`MemberID`, `FirstName`, `LastName`, `AddressLine`, `Town`, `Postcode`, `PhoneNumber`, `EmailAddress`, `Password`) VALUES
+INSERT INTO `member` (`MemberID`, `FirstName`, `LastName`, `AddressLine`, `Town`, `Postcode`, `PhoneNumber`, `EmailAddress`, `Password`) VALUES
 (1, 'Allen', 'Jones', 'Flat 1 Lady Lane', 'Anson', 'LS28 4TF', '07702234546', 'allen.jones@fake.com', 'Cat1'),
 (2, 'Bob', 'Thomas', 'Flat 2 Lady Lane', 'Auburn', 'LS14 7QW', '07702234547', 'bob.thomas@fake.com', 'Dog1'),
 (3, 'Colin', 'Brown', 'Flat 3 Lady Lane', 'Augusta', 'LS13 1ST', '07702234548', 'colin.brown@fake.com', 'Horse1'),
@@ -576,80 +754,81 @@ INSERT INTO `MEMBER` (`MemberID`, `FirstName`, `LastName`, `AddressLine`, `Town`
 --
 
 --
--- Indexes for table `BORROW_HISTORY`
+-- Indexes for table `board_games`
 --
-ALTER TABLE `BORROW_HISTORY`
-  ADD PRIMARY KEY (`RecordID`);
+ALTER TABLE `board_games`
+  ADD PRIMARY KEY (`GameID`);
 
 --
--- Indexes for table `EMPLOYEES`
+-- Indexes for table `borrow_history`
 --
-ALTER TABLE `EMPLOYEES`
+ALTER TABLE `borrow_history`
+  ADD PRIMARY KEY (`RecordID`),
+  ADD KEY `MemberID` (`MemberID`);
+
+--
+-- Indexes for table `employees`
+--
+ALTER TABLE `employees`
   ADD PRIMARY KEY (`EmployeeID`);
 
 --
--- Indexes for table `GAME_CATEGORY_LINK`
+-- Indexes for table `game_category`
 --
-ALTER TABLE `GAME_CATEGORY_LINK`
-  ADD PRIMARY KEY (`Category_to_game_ID`);
+ALTER TABLE `game_category`
+  ADD PRIMARY KEY (`CategoryID`);
 
 --
--- Indexes for table `GAME_REVIEW`
+-- Indexes for table `game_category_link`
 --
-ALTER TABLE `GAME_REVIEW`
-  ADD PRIMARY KEY (`ID`);
+ALTER TABLE `game_category_link`
+  ADD PRIMARY KEY (`LinkID`),
+  ADD KEY `CategoryID` (`CategoryID`),
+  ADD KEY `GameID` (`GameID`);
 
 --
--- Indexes for table `LIBRARY`
+-- Indexes for table `game_review`
 --
-ALTER TABLE `LIBRARY`
+ALTER TABLE `game_review`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `GameID` (`GameID`),
+  ADD KEY `MemberID` (`MemberID`);
+
+--
+-- Indexes for table `library`
+--
+ALTER TABLE `library`
   ADD PRIMARY KEY (`LibraryID`);
 
 --
--- Indexes for table `MEMBER`
+-- Indexes for table `member`
 --
-ALTER TABLE `MEMBER`
+ALTER TABLE `member`
   ADD PRIMARY KEY (`MemberID`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Constraints for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `BORROW_HISTORY`
+-- Constraints for table `borrow_history`
 --
-ALTER TABLE `BORROW_HISTORY`
-  MODIFY `RecordID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+ALTER TABLE `borrow_history`
+  ADD CONSTRAINT `borrow_history_ibfk_1` FOREIGN KEY (`MemberID`) REFERENCES `member` (`MemberID`);
 
 --
--- AUTO_INCREMENT for table `EMPLOYEES`
+-- Constraints for table `game_category_link`
 --
-ALTER TABLE `EMPLOYEES`
-  MODIFY `EmployeeID` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1243;
+ALTER TABLE `game_category_link`
+  ADD CONSTRAINT `game_category_link_ibfk_1` FOREIGN KEY (`CategoryID`) REFERENCES `game_category` (`CategoryID`),
+  ADD CONSTRAINT `game_category_link_ibfk_2` FOREIGN KEY (`GameID`) REFERENCES `board_games` (`GameID`);
 
 --
--- AUTO_INCREMENT for table `GAME_CATEGORY_LINK`
+-- Constraints for table `game_review`
 --
-ALTER TABLE `GAME_CATEGORY_LINK`
-  MODIFY `Category_to_game_ID` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
-
---
--- AUTO_INCREMENT for table `GAME_REVIEW`
---
-ALTER TABLE `GAME_REVIEW`
-  MODIFY `ID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
---
--- AUTO_INCREMENT for table `LIBRARY`
---
-ALTER TABLE `LIBRARY`
-  MODIFY `LibraryID` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `MEMBER`
---
-ALTER TABLE `MEMBER`
-  MODIFY `MemberID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+ALTER TABLE `game_review`
+  ADD CONSTRAINT `game_review_ibfk_1` FOREIGN KEY (`GameID`) REFERENCES `board_games` (`GameID`),
+  ADD CONSTRAINT `game_review_ibfk_2` FOREIGN KEY (`MemberID`) REFERENCES `member` (`MemberID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
