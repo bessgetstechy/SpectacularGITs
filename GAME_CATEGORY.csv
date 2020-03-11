@@ -1,73 +1,64 @@
-1,Abstract Strategy
-2,Acting
-3,Action
-4,Adult
-5,Adventure
-6,Animals
-7,Area Control
+1,Accessible
+2,Action
+3,Adult
+4,Adventure
+5,Animals
+6,Apocalypse
+7,Battle
 8,Betting
 9,Bluffing
 10,Card Game
 11,Celebrity
-12,Children's Game
+12,Children
 13,City Building
-14,Co-operative Play
-15,Collaborative
-16,Comic Book
-17,Deduction
-18,Dexterity
-19,Dice
-20,Economic
-21,Educational
-22,Fantasy
-23,Farming
-24,Fighting
-25,Grid Movement
-26,Humor
-27,Industry
-28,Maze
-29,Memory
-30,Movies
-31,Murder/Mystery
-32,Music
-33,Mythology
-34,Negotiation
-35,Network Building
-36,Novel-based
-37,Number
-38,Paper-and-Pencil
-39,Partnerships
-40,Party Game
-41,Pattern Building
-42,Pirates
-43,Player Elimination
-44,Point to Point Movement
-45,Political
-46,Popular Culture
-47,Prehistoric
-48,Press Your Luck
-49,Print & Play
-50,Puzzle
-51,Racing
-52,Radio
-53,Role Playing
-54,Secret Agents
-55,Simulation
-56,Simultaneous Action
-57,Single Player
-58,Spin and Move
-59,Sports
-60,Storytelling
-61,Teen
-62,Territory Building
-63,Tile Placement
-64,Trivia
-65,TV
-66,Video Game Theme
-67,Voting
-68,Wargame
-69,Word Game
-70,Worker Placement
-71,World War I
-72,World War II
-73,Zombies
+14,Civilization
+15,Comic Book
+16,Detective
+17,Dice
+18,Economic
+19,Educational
+20,Family
+21,Fantasy
+22,Farming
+23,Fighting
+24,Grid Movement
+25,History
+26,Horror
+27,Humour
+28,Logic
+29,Maze
+30,Memory
+31,Music
+32,Mythology
+33,Negotiation
+34,Number
+35,Party Game
+36,Pirates
+37,Player Elimination
+38,Political
+39,Popular Culture
+40,Property
+41,Puzzle
+42,Quiz
+43,Racing
+44,Radio
+45,Role Playing
+46,Single Player
+47,Space
+48,Sports
+49,Spy
+50,Strategy
+51,Survival
+52,Teen
+53,Town
+54,Trivia
+55,TV/Film
+56,Video Game
+57,Voting
+58,Wargame
+59,Word
+60,Word Game
+61,Worker Placement
+62,World War I
+63,World War II
+64,Zombies
