@@ -70,7 +70,7 @@
     <div class="center">
      <br>
     <br>
-      <img src="Images\Spectacular logo2.png" alt="Spectacular Board Game Library" width="462" height="190" class="center"></a>
+      <img src="Images/Spectacular Boardgame Library LOGO.png" alt="Spectacular Board Game Library" width="462" height="190" class="center"></a>
       <br>
       <br>
       <br>
