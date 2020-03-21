@@ -1,3 +1,40 @@
+/* IMPORT FONT  */
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet');
+
+
+/* SIMPLE STYLE PAGE  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+
+/* STYLE MAIN PAGE FEATURES  */
+
+/* TEXT STYLING  */
+body {
+  margin: 0;
+  font-family: Varela Round, Helvetica;
+}
+
+header>h1{
+    color: #cccccc;
+    text-align: center;
+    font-family: Varela Round, sans-serif;
+}
+
+header>h2{
+    color: #cccccc;
+    text-align: center;
+    font-family: Varela Round, sans-serif;
+}
+
+header>h3{
+    color: #cccccc;
+    text-align: center;
+    font-family: Varela Round, sans-serif;
+}
+
 
 .center {
   display: block;
@@ -6,6 +43,9 @@
   width: 50%;
 }
 
+
+
+/* STYLE FORM  */
 form-inline {
     justify-content: center;
 }
