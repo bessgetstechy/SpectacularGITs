@@ -1,3 +1,7 @@
+<?php
+include_once 'Classes/User.php';  
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Below is the head -->  
@@ -78,17 +82,35 @@
 
 <!-- Below is the body -->
 
-
        <div class="container-sm"> 
-<?php  
-        if (!empty($_POST)) {
-            echo "<br><p> Congratulations $_POST[FirstName], you're now a member!</p><br>"; 
-            echo "<p>Your username is: $_POST[EmailAddress]</p>";
+    <?php  
+     
+        if (!empty($_POST)){
+    
+                $FirstName = $_POST["FirstName"];
+                $LastName = $_POST["LastName"];
+                $EmailAddress = $_POST["EmailAddress"];
+                $Password = $_POST["Password"];
+                $AddressLine = $_POST["AddressLine"];
+                $Town = $_POST["Town"];
+                $Postcode = $_POST["Postcode"];
+                $Phonenumber = $_POST["Phonenumber"];
+                          
+        $member = new User($FirstName, $LastName, $EmailAddress);
+        $member->SetPassword($Password);
+        $member->SetAddressLine($AddressLine);
+        $member->SetTown($Town);
+        $member->SetPassword($Password);
+        $member->SetPassword($Phonenumber);
+        $member->insertNewUser();
+   
+            echo "<br><p> Congratulations $FirstName, you're now a member!</p><br>"; 
+            echo "<p>Your username is: $EmailAddress</p>";
         }
         else{
         echo "<br><br><h4>Sorry, there was an error. Please try registering again.</h4>" ;
         }
-       
+     
 ?>
 
     

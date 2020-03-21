@@ -1,7 +1,5 @@
 <?php
 
-include_once 'DBConnectionTrait.php';
-
 class User {
     
     public $firstname;
@@ -14,7 +12,7 @@ class User {
     private $password;
     public $role = 'member';
     
-    
+
     public function __construct($firstname, $lastname, $email) {
       $this->firstname = $firstname;
       $this->lastname = $lastname;
@@ -68,10 +66,18 @@ class User {
     public function getAddress() {
     return $this->addressline; $this->town; $this->postcode;
     }
-    
-     public function insertNewUser() {
-        $pdo = $this->connect();
-        $sqlregistermembern= "INSERT INTO member (FirstName, LastName, EmailAddress, Password, AddressLine, Town, Postcode) VALUES (:FirstName, :LastName, :EmailAddress, :Password, :AddressLine, :Town, :Postcode) ";
+   
+    public function insertNewUser() {
+        try {
+            $pdo = new PDO('mysql:host=localhost:8080;dbname=boardgame_library' , 'root' , '');
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            echo "Error: Failed to connect." . $e->getMessage();
+        }
+        return $pdo;
+        
+        
+        $sqlregistermember= "INSERT INTO member (FirstName, LastName, EmailAddress, Password, AddressLine, Town, Postcode) VALUES (:FirstName, :LastName, :EmailAddress, :Password, :AddressLine, :Town, :Postcode) ";
  
         try {
             $stmt = $pdo-> prepare($sqlregistermember);
