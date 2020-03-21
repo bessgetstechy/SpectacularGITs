@@ -1,5 +1,7 @@
 <?php
 
+include_once 'DBConnectionTrait.php';
+
 class User {
     
     public $firstname;
@@ -63,9 +65,27 @@ class User {
     return $this->addressline; $this->town; $this->postcode;
     }
     
+     public function insertNewUser() {
+        $pdo = $this->connect();
+        $sqlregistermembern= "INSERT INTO member (FirstName, LastName, EmailAddress, Password, AddressLine, Town, Postcode) VALUES (:FirstName, :LastName, :EmailAddress, :Password, :AddressLine, :Town, :Postcode) ";
+ 
+        try {
+            $stmt = $pdo-> prepare($sqlregistermember);
+            $stmt->execute([
+                'FirstName'=>$_POST["FirstName"],
+                'LastName'=>$_POST["LastName"],
+                'EmailAddress'=>$_POST["EmailAddress"],
+                'Password'=>$_POST["Password"],
+                'AddressLine'=>$_POST["AddressLine"],
+                'Town'=>$_POST["Town"],
+                'Postcode'=>$_POST["Postcode"],                
+            ]);
 
+            }catch (\PDOException $e) {
+            echo $e->getMessage();
+//            $error = $e->errorInfo();
+            }
+
+        }
 }
-
-
-
 ?>

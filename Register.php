@@ -1,5 +1,25 @@
 <?php
 session_start();
+include_once 'Classes/User.php';
+
+if (!empty($_POST)){
+    
+                $FirstName = $_POST["FirstName"];
+                $LastName = $_POST["LastName"];
+                $EmailAddress = $_POST["EmailAddress"];
+                $Password = $_POST["Password"];
+                $AddressLine = $_POST["AddressLine"];
+                $Town = $_POST["Town"];
+                $Postcode = $_POST["Postcode"];
+                $Phonenumber = $_POST["Phonenumber"];
+                          
+                  
+        $mem = new Member($first_name, $last_name, $dob, $first_line, $city, $county, $post_code, $phone, $date_joined, $username, $password, $user_type_id);
+        $mem->insertNewUser();
+    
+    }
+    
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,7 +110,7 @@ session_start();
                 <br>
                 <br>
                 <br>
-            <h2 style="font-family: 'Pacifico', cursive;">Registration Form</h2>
+            <h2 style="font-family: 'Pacifico', cursive; font-size: 60px">Registration Form</h2>
             
            
             <br>
@@ -121,33 +141,40 @@ session_start();
                     </small>
 
                 </div> 
-                              <div class="form-group">
+              
+                <div class="form-group">
                     <label for="Password">Password</label>
                     <input  type="Password" class="form-control" placeholder=""  name="password" id="email" value="" required size="8" />          
                     <small id="password" class="form-text text-muted">
                         Password must contain 8 characters.
                     </small>
                 </div> 
-              
-                </div> 
-                              <div class="form-group">
+           
+                <div class="form-group">
                     <label for="addressline">Address Line</label>
                     <input  type="addressline" class="form-control" placeholder=""  name="addressline" id="email" value=""/>          
                     <small id="password" class="form-text text-muted">
                     </small>
                 </div> 
               
-              
-                  <div class="row">
+                <div class="form-group">
+                      <div class="row">
                         <div class="col">
-                            <label for="firstName">Town</label>
+                            <label for="Town">Town</label>
                             <input  type="text" class="form-control" placeholder=""  name="Town" id="firstName" value="" />          
                         </div>
                         <div class="col">
-                            <label for=”lastName”>Last Name</label>
-                            <input  type="text" class="form-control" placeholder=""  name="Post Code" id="lastName" value=""/>
+                            <label for=”Postcode”>Postcode</label>
+                            <input  type="text" class="form-control" placeholder=""  name="Postcode" id="lastName" value=""/>
                         </div>
-                    </div>
+        
+                      </div>
+                </div>
+                      
+                <div class="form-group">
+                            <label for="Phonenumber">Phone Number</label>
+                            <input  type="text" class="form-control" placeholder=""  name="Phonenumber" id="firstName" value="" />          
+                </div>
             <br>
             <br>
   
@@ -155,7 +182,7 @@ session_start();
             
      </form>
     </div>
-
+    
     <!--  Below is the footer -->  
     <br>
     <br>
