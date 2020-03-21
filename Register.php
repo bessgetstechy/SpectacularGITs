@@ -13,10 +13,13 @@ if (!empty($_POST)){
                 $Postcode = $_POST["Postcode"];
                 $Phonenumber = $_POST["Phonenumber"];
                           
-                  
-        $mem = new Member($first_name, $last_name, $dob, $first_line, $city, $county, $post_code, $phone, $date_joined, $username, $password, $user_type_id);
-        $mem->insertNewUser();
-    
+        $member = new Member($FirstName, $LastName, $EmailAddress);
+        $member->SetPassword($Password);
+        $member->SetAddressLine($AddressLine);
+        $member->SetTown($Town);
+        $member->SetPassword($Password);
+        $member->SetPassword($honenumber);
+        $member->insertNewUser();
     }
     
     
@@ -34,14 +37,16 @@ if (!empty($_POST)){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
     
-    <!-- Stylesheet internal-->
-    <link rel="stylesheet" type="text/css" href="LibraryStyles.css">
+    <!-- Stylesheet internal
+    <link rel="stylesheet" type="text/css" href="LibraryStyles.css">-->
     
     <title>Spectacular Board Game Library | Register </title>
     <style> 
     #MainTitle {color: #9AF3C1;
         line-height: 1.4;
         font-size: 40px;}
+    
+    
         </style>
         
         
@@ -111,15 +116,14 @@ if (!empty($_POST)){
                 <br>
                 <br>
             <h2 style="font-family: 'Pacifico', cursive; font-size: 60px">Registration Form</h2>
-            
+           
            
             <br>
             <br>
  
-    <form action="Success.php" method="POST">  
- 
-          <div class="formBlock">  <!-- put the box around the form fields -->
-
+    <form action="RegistrationComplete.php" method="POST">  
+    
+                <div class="formBlock">  <!-- put the box around the form fields -->
                 <div class="form-group">
                     <div class="row">
                         <div class="col">
@@ -176,11 +180,11 @@ if (!empty($_POST)){
                             <input  type="text" class="form-control" placeholder=""  name="Phonenumber" id="firstName" value="" />          
                 </div>
             <br>
-            <br>
-  
-            <button class="btn" style="background-color: rgb(242, 107, 203); color: white" type="submit">Create Account</button>
+          
+            <button class="btn" style="background-color: rgb(242, 107, 203); color: white; float: right;" type="submit">Create Account</button>    
+        </form>
+          
             
-     </form>
     </div>
     
     <!--  Below is the footer -->  

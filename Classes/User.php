@@ -45,6 +45,10 @@ class User {
     $this->phonenumber = $phonenumber;
     }
     
+    public function setPassword($password) {
+    $this->phonenumber = $password;
+    }
+    
     /* public function setPassword($password) {
     if('SOME-REGEX???'){
     $this->email = $password;
