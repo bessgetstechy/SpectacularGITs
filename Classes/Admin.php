@@ -12,5 +12,5 @@ public function __construct($firstname, $lastname, $email, $employeeno){
         parent::__construct($firstname, $lastname, $email);
 }
 
-
+}
 ?>
