@@ -59,7 +59,7 @@
                      <a class="nav-link" href="Register.php" >Sign up</a>
                     </li>
                     <form class="form-inline">
-                        <button class="btn btn-outline-light" type="button" onclick="window.location.href = 'http://localhost:8080/Library/Login.php';">Log in</button>
+                        <button class="btn btn-outline-light" type="button" onclick="window.location.href = 'http://localhost:8080/SpectacularGITs.git//Login.php';">Log in</button>
                     </form>
                 </ul>
         </nav>
