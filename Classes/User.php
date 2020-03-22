@@ -66,7 +66,7 @@ class User {
     public function getAddress() {
     return $this->addressline; $this->town; $this->postcode;
     }
-   
+    
     public function insertNewUser() {
         try {
             $pdo = new PDO('mysql:host=localhost:8080;dbname=boardgame_library' , 'root' , '');
@@ -98,4 +98,4 @@ class User {
 
         }
 }
-?>
+        ?>
