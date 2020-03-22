@@ -6,34 +6,6 @@
   width: 50%;
 }
 
-/* STYLE HEADER  */
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #Ea3467;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover {
-  background-color: #80f6c0;
-}     
-
-
-/* STYLE FORM  */
 form-inline {
     justify-content: center;
 }
@@ -50,7 +22,7 @@ h2 {text-align: center}
   transform: translate(-50%, -50%);
 }
 
-<<<<<<< HEAD
+
 /* FORM STYLES */
 
 .boardgameform {
@@ -82,5 +54,3 @@ label {
     font-size: 1112px;
 }
 
-=======
->>>>>>> 15042121d8c8892b4ba6fdc5d67dc081b1345b2f
