@@ -68,7 +68,10 @@ li a {
 
 li a:hover {
   background-color: #80f6c0;
-}
+}     */
+
+
+
 
 /* STYLE FORM  */
 form-inline {
@@ -78,9 +81,10 @@ form-inline {
 
 h2 {text-align: center}
 
+
 /* Centered section inside the top navigation */
 
-/*
+
 .nav-centered {
   float: none;
   position: absolute;
@@ -88,4 +92,3 @@ h2 {text-align: center}
   left: 50%;
   transform: translate(-50%, -50%);
 }
-*/

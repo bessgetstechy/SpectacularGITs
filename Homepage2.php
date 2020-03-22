@@ -20,36 +20,7 @@
         
 <!-- Below is the navigation -->
 
-<!-- NEW NAV BAR -->
-        <ul>
-            <li><a class="active" href="Home.php">Home</a></li>
-            <li><a href="About.php">About</a></li>
-            <li><a href="BrowseAllPage.php">Browse</a></li>
-            <li><a href="#contact us">Contact</a></li>
-            <li><a href="#Account">Account</a></li>
-            <li><a href="#librarian Area">librarian's Area</a></li>
-
-            
-            <li style="float:right"><a 
-            <form class="form-inline">
-                        <button class="btn btn-outline-light" type="button" onclick="window.location.href = 'http://localhost:8080/Library/Login.php';">Log in</button>
-                    </form>
-            </a></li>
-            
-            
-            <li style="float:right"><a 
-            <form class="form-inline">
-                        <button class="btn btn-outline-light" type="button" onclick="window.location.href = 'http://localhost:8080/Library/SignUp.php';">Sign Up</button>
-                    </form>
-            </a></li>
-            
-        </ul>  
-
-     
-
-        
-<!-- ORIGINAL NAV. DON'T DELETE: 
-        <nav class="navbar navbar-expand navbar-light flex-column flex-md-row bd-navbar" style="background-color: rgb(242, 107, 203)">
+        <nav class="navbar navbar-expand navbar-light flex-column flex-md-row bd-navbar" style="background-color: #Ea3467">
              <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
@@ -63,8 +34,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Account
-                        </a>
+                        Account</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                              <a class="dropdown-item" href="OnLoan.php">Games on loan</a>
                              <a class="dropdown-item" href="#">Loan history</a>
@@ -87,7 +57,7 @@
                     </form>
                 </ul>
         </nav>  
--->
+
 
 
 </head>
