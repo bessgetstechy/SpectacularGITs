@@ -7,12 +7,14 @@ try {
 	die($e->getMessage());  //die() for illustration
 //always handle errors 
 }
+
+/*
 $stmt = $pdo->prepare("SELECT gameID, title FROM board_games");
 $stmt ->execute();
 while ($row = $stmt->fetch()){print_r($row);
 }
 
-/*$result = $stmt->fetchAll(PDO::FETCH_CLASS, "BoardGame");
+$result = $stmt->fetchAll(PDO::FETCH_CLASS, "BoardGame");
 
 foreach ($result as $boardgame) {
 	echo $boardgame->getID();
