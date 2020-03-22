@@ -1,53 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Below is the head -->  
-    <head>
+    
+   
+
+<head>
       
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Bootstrap CSS & Fonts -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS & Fonts-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
     
-        <!-- Stylesheet internal-->
-        <link rel="stylesheet" type="text/css" href="LibraryStyles.css">
+    <!-- Stylesheet internal-->
+    <link rel="stylesheet" type="text/css" href="LibraryStyles.css">
     
-        <title>Spectacular Board Game Library | Home </title>
-  
+    <title>Spectacular Board Game Library | Home </title>
+    <style> 
+    #MainTitle {color: rgb(242, 107, 203);
+        line-height: 1.4;
+        align-content: center;
+        font-size: 30px;}
+    </style>
         
-        
-<!-- Below is the navigation -->
+        <!-- Below is the navigation -->
 
-<!-- NEW NAV BAR -->
-        <ul>
-            <li><a class="active" href="Home.php">Home</a></li>
-            <li><a href="About.php">About</a></li>
-            <li><a href="BrowseAllPage.php">Browse</a></li>
-            <li><a href="#contact us">Contact</a></li>
-            <li><a href="#Account">Account</a></li>
-            <li><a href="#librarian Area">librarian's Area</a></li>
-            
-            
-            <li style="float:right"><a 
-            <form class="form-inline">
-                        <button class="btn btn-outline-light" type="button" onclick="window.location.href = 'http://localhost:8080/Library/Login.php';">Log in</button>
-                    </form>
-            </a></li>
-            
-            
-            <li style="float:right"><a 
-            <form class="form-inline">
-                        <button class="btn btn-outline-light" type="button" onclick="window.location.href = 'http://localhost:8080/Library/SignUp.php';">Sign Up</button>
-                    </form>
-            </a></li>
-            
-        </ul>  
-
-
-
- <!-- ORIGINAL NAV. DON'T DELETE: 
     <nav class="navbar navbar-expand navbar-light d-flex justify-content-between bd-navbar" style="background-color: rgb(242, 107, 203)">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
@@ -92,7 +70,6 @@
     </form>
     </ul>
     </nav>
- -->
 
 </head>
 
@@ -100,12 +77,14 @@
 <body>
     <br>
     <br>
-    <h2> About </h2>
+        <h2 style="font-family: 'Pacifico', cursive;">About</h2>
     <br>
     <br>
   
     <div class="center">
-        We are 5 girls who decided to learn how to code, and wanted to set up a board game library business!  
+
+        Ladies! I am sorry but I forgot what was written here and I accidentally wrote over it when copying some code to create a new page. Doh!
+        
   </div>
 </div>
 
