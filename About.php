@@ -83,7 +83,8 @@
   
     <div class="center">
 
-        Browse this page to see what's on offer...  (need to change the header image from about to browse)
+        Ladies! I am sorry but I forgot what was written here and I accidentally wrote over it when copying some code to create a new page. Doh!
+        
   </div>
 </div>
 
