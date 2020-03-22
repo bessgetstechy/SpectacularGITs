@@ -67,7 +67,22 @@ class User {
     return $this->addressline; $this->town; $this->postcode;
     }
     
-    public function insertNewUser() {
+   /* public function insertNewUser() {
+        
+               $sqlregistermember= "INSERT INTO member (FirstName, LastName, EmailAddress, Password, AddressLine, Town, Postcode) VALUES (:FirstName, :LastName, :EmailAddress, :Password, :AddressLine, :Town, :Postcode) ";
+               $stmt = $pdo->prepare($sqlregistermember);              
+               
+               $stmt->execute([
+                'FirstName'=>$FirstName,
+                'LastName'=>$LastName,
+                'EmailAddress'=>$EmailAddress,
+                'Password'=>$Password,
+                'AddressLine'=>$AddressLine,
+                'Town'=>$Town,
+                'Postcode'=>$Postcode,                
+            ]
+              );
+                  
         try {
             $pdo = new PDO('mysql:host=localhost:8080;dbname=boardgame_library' , 'root' , '');
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -96,6 +111,6 @@ class User {
 //            $error = $e->errorInfo();
             }
 
-        }
+        }*/
 }
         ?>
