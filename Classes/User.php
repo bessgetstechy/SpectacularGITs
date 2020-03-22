@@ -12,7 +12,7 @@ class User {
     private $password;
     public $role = 'member';
     
-    
+
     public function __construct($firstname, $lastname, $email) {
       $this->firstname = $firstname;
       $this->lastname = $lastname;
@@ -43,6 +43,10 @@ class User {
     $this->phonenumber = $phonenumber;
     }
     
+    public function setPassword($password) {
+    $this->phonenumber = $password;
+    }
+    
     /* public function setPassword($password) {
     if('SOME-REGEX???'){
     $this->email = $password;
@@ -63,9 +67,35 @@ class User {
     return $this->addressline; $this->town; $this->postcode;
     }
     
+    public function insertNewUser() {
+        try {
+            $pdo = new PDO('mysql:host=localhost:8080;dbname=boardgame_library' , 'root' , '');
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            echo "Error: Failed to connect." . $e->getMessage();
+        }
+        return $pdo;
+        
+        
+        $sqlregistermember= "INSERT INTO member (FirstName, LastName, EmailAddress, Password, AddressLine, Town, Postcode) VALUES (:FirstName, :LastName, :EmailAddress, :Password, :AddressLine, :Town, :Postcode) ";
+ 
+        try {
+            $stmt = $pdo-> prepare($sqlregistermember);
+            $stmt->execute([
+                'FirstName'=>$_POST["FirstName"],
+                'LastName'=>$_POST["LastName"],
+                'EmailAddress'=>$_POST["EmailAddress"],
+                'Password'=>$_POST["Password"],
+                'AddressLine'=>$_POST["AddressLine"],
+                'Town'=>$_POST["Town"],
+                'Postcode'=>$_POST["Postcode"],                
+            ]);
 
+            }catch (\PDOException $e) {
+            echo $e->getMessage();
+//            $error = $e->errorInfo();
+            }
+
+        }
 }
-
-
-
-?>
+        ?>

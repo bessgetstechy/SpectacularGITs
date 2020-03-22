@@ -1,39 +1,81 @@
+<?php
+
+$dbHost = "localhost";
+$dbusr = "root";
+$dbpwd = "";
+$dbname = "boardgame_library";
+
+        try {
+    $dsn = "mysql:host=" . $dbHost . ";dbname=" . $dbname;
+    $pdo = new PDO($dsn, $dbuser, $dbpwd);
+    echo "Connection Successful";
+        } catch (PDOException $e) {
+            echo "DB Connection Failed: " . $e->getMessage();
+        }
+            
+
+    $status = "";
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $FirstName = $_POST['FirstName'];
+        $LastName = $_POST['LastName'];
+        $EmailAddress = $_POST['EmailAddress'];
+        $Password = $_POST['Password'];
+        $AddressLine = $_POST['AddressLine'];
+        $Town = $_POST['Town'];
+        $Postcode = $_POST['Postcode'];
+        $Phonenumber = $_POST['Phonenumber'];
+                          
+        if(empty($FirstName) || empty($LastName) || empty($EmailAddress) || empty($Password) || empty($AddressLine) || empty($Town) || empty($postcode) || empty($phonenumber)){
+            $status = 'All fields are compulsory';
+        } else {
+            if(strlen($FirstName) >= 255 || !preg_match("/^[a-zA-Z-'\s]+$/", $FirstNAme)) {
+                $status = "Please enter a valid name";
+            } else if(!filter_var($EmailAddress, FILTER_VALIDATE_EMAIL)) {
+              $status = "Please enter a valid email";
+            } else {
+                $status = "Thanks for registering, $FirstName. Please log in using $EmailAddress.";
+            }
+        }
+    }
+    ?>
 <!DOCTYPE html>
 <html lang="en">
-    
-   
-
+<!-- Below is the head -->  
 <head>
       
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS & Fonts-->
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
     
-    <!-- Stylesheet internal-->
-    <link rel="stylesheet" type="text/css" href="LibraryStyles.css">
+    <!-- Stylesheet internal
+    <link rel="stylesheet" type="text/css" href="LibraryStyles.css">-->
     
-    <title>Spectacular Board Game Library | Home </title>
-    <style> 
-    #MainTitle {color: rgb(242, 107, 203);
-        line-height: 1.4;
-        align-content: center;
-        font-size: 30px;}
-    </style>
+    <title>Spectacular Board Game Library | Register </title>
+
+        
         
         <!-- Below is the navigation -->
 
-    <nav class="navbar navbar-expand navbar-light d-flex justify-content-between bd-navbar" style="background-color: rgb(242, 107, 203)">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <nav class="navbar navbar-expand navbar-light flex-column flex-md-row d-flex justify-content-between bd-navbar" style="background-color: rgb(242, 107, 203)">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      
     <ul class="navbar-nav mr-auto">
+        
       <li class="nav-item">
-        <a class="nav-link" href="Homepage2.php">Home</a>
+         <a class="navbar-brand" href="#">
+         <img src="Specs.png" width="50" height="30" alt=""></a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="About.php">About<span class="sr-only">(current)</span></a>
+      
+      <li class="nav-item">
+          <a class="nav-link" href="Homepage2.php">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="About.php">About</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="../profile/index.html">Contact Us</a>
@@ -43,7 +85,7 @@
          Account
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="OnLoan.php">Games on loan</a>
+            <a class="dropdown-item" href="OnLoan.php">Games on loan</a>
           <a class="dropdown-item" href="#">Loan history</a>
           <a class="dropdown-item" href="#">Saved list </a>
           <div class="dropdown-divider"></div>
@@ -51,9 +93,10 @@
         </div>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="AdminArea.php">Librarian's Area</a>
+         <a class="nav-link" href="AdminArea.php">Librarian's Area</a>
       </li>
     </ul>
+
     <div class="nav-centered">
       <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search Games" aria-label="Search">
@@ -62,36 +105,22 @@
     </div>
       
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="Register.php" >Sign up</a>
+      <li class="nav-item active">
+        <a class="nav-link" href="Register.php">Sign up<span class="sr-only">(current)</span></a>
       </li>
     <form class="form-inline">
-        <button class="btn btn-outline-light" type="button" onclick="window.location.href = 'http://localhost:8080/Library/Login.php';">Log in</button>
+        <button class="btn btn-outline-light" type="button" onclick="window.location.href = 'http://localhost:8080/Library/Login.php';" >Log in</button>
     </form>
     </ul>
-    </nav>
+</nav>
+
 
 </head>
 
 <!-- Below is the body -->
-<body>
-    <br>
-    <br>
-        <h2 style="font-family: 'Pacifico', cursive;">About</h2>
-    <br>
-    <br>
-  
-    <div class="center">
 
-        Ladies! I am sorry but I forgot what was written here and I accidentally wrote over it when copying some code to create a new page. Doh!
-        
-  </div>
-</div>
-
-
-
-    
-
+       <div class="container-sm"> 
+  </div> 
     <!--  Below is the footer -->  
     <br>
     <br>
@@ -114,6 +143,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   
 </body>
-    
+
 <!--End-->
 </html>	
+
+

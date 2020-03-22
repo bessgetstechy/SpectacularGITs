@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Bootstrap CSS & Fonts -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
     
         <!-- Stylesheet internal-->
@@ -16,16 +16,11 @@
     
         <title>Spectacular Board Game Library | Home </title>
   
-        <style> 
-        #MainTitle {color: rgb(242, 107, 203);
-        line-height: 1.4;
-        align-content: center;
-        font-size: 30px;}
-        </style>
         
-        <!-- Below is the navigation -->
+        
+<!-- Below is the navigation -->
 
-        <nav class="navbar navbar-expand navbar-light flex-column flex-md-row bd-navbar" style="background-color: rgb(242, 107, 203)">
+        <nav class="navbar navbar-expand navbar-light flex-column flex-md-row bd-navbar" style="background-color: #Ea3467">
              <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
@@ -39,8 +34,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Account
-                        </a>
+                        Account</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                              <a class="dropdown-item" href="OnLoan.php">Games on loan</a>
                              <a class="dropdown-item" href="#">Loan history</a>
@@ -59,10 +53,13 @@
                      <a class="nav-link" href="Register.php" >Sign up</a>
                     </li>
                     <form class="form-inline">
-                        <button class="btn btn-outline-light" type="button" onclick="window.location.href = 'http://localhost:8080/Library/Login.php';">Log in</button>
+                        <button class="btn btn-outline-light" type="button" onclick="window.location.href = 'http://localhost:8080/SpectacularGITs.git//Login.php';">Log in</button>
                     </form>
                 </ul>
-        </nav>
+        </nav>  
+
+
+
 </head>
 
 <!-- Below is the body -->
@@ -70,7 +67,7 @@
     <div class="center">
      <br>
     <br>
-      <img src="Images\Spectacular logo2.png" alt="Spectacular Board Game Library" width="462" height="190" class="center"></a>
+      <img src="Images/Spectacular Boardgame Library LOGO.png" alt="Spectacular Board Game Library" width="462" height="190" class="center"></a>
       <br>
       <br>
       <br>

@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
     
-   
+    
+    
+<!-- CODE COPIED FROM ABOUT PAGE -->  
+
+
 
 <head>
       
@@ -83,8 +87,7 @@
   
     <div class="center">
 
-        Ladies! I am sorry but I forgot what was written here and I accidentally wrote over it when copying some code to create a new page. Doh!
-        
+        Browse this page to see what's on offer...  (need to change the header image from about to browse)
   </div>
 </div>
 

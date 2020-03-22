@@ -9,7 +9,10 @@ try {
 }
 $stmt = $pdo->prepare("SELECT gameID, title FROM board_games");
 $stmt ->execute();
-$result = $stmt->fetchAll(PDO::FETCH_CLASS, "BoardGame");
+while ($row = $stmt->fetch()){print_r($row);
+}
+
+/*$result = $stmt->fetchAll(PDO::FETCH_CLASS, "BoardGame");
 
 foreach ($result as $boardgame) {
 	echo $boardgame->getID();
@@ -21,5 +24,6 @@ foreach ($result as $boardgame) {
         echo PHP_EOL;
         echo $boardgame->getTitle();
         
-        }
+        }    
+ */     
 ?>
