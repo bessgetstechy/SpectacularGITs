@@ -86,7 +86,7 @@
 <body>
     <br>
     <br>
-        <h2 style="font-family: 'Pacifico', cursive;">About</h2>
+        <h2 style="font-family: 'Pacifico', cursive;">Browse the games we have on offer...</h2>
     <br>
     <br>
   
