@@ -1,44 +1,4 @@
-<?php
 
-$dbHost = "localhost";
-$dbusr = "root";
-$dbpwd = "";
-$dbname = "boardgame_library";
-
-        try {
-    $dsn = "mysql:host=" . $dbHost . ";dbname=" . $dbname;
-    $pdo = new PDO($dsn, $dbuser, $dbpwd);
-    echo "Connection Successful";
-        } catch (PDOException $e) {
-            echo "DB Connection Failed: " . $e->getMessage();
-        }
-            
-
-    $status = "";
-
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $FirstName = $_POST['FirstName'];
-        $LastName = $_POST['LastName'];
-        $EmailAddress = $_POST['EmailAddress'];
-        $Password = $_POST['Password'];
-        $AddressLine = $_POST['AddressLine'];
-        $Town = $_POST['Town'];
-        $Postcode = $_POST['Postcode'];
-        $Phonenumber = $_POST['Phonenumber'];
-                          
-        if(empty($FirstName) || empty($LastName) || empty($EmailAddress) || empty($Password) || empty($AddressLine) || empty($Town) || empty($postcode) || empty($phonenumber)){
-            $status = 'All fields are compulsory';
-        } else {
-            if(strlen($FirstName) >= 255 || !preg_match("/^[a-zA-Z-'\s]+$/", $FirstNAme)) {
-                $status = "Please enter a valid name";
-            } else if(!filter_var($EmailAddress, FILTER_VALIDATE_EMAIL)) {
-              $status = "Please enter a valid email";
-            } else {
-                $status = "Thanks for registering, $FirstName. Please log in using $EmailAddress.";
-            }
-        }
-    }
-    ?>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Below is the head -->  
@@ -65,11 +25,7 @@ $dbname = "boardgame_library";
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       
     <ul class="navbar-nav mr-auto">
-        
-      <li class="nav-item">
-         <a class="navbar-brand" href="#">
-         <img src="Specs.png" width="50" height="30" alt=""></a>
-      </li>
+       
       
       <li class="nav-item">
           <a class="nav-link" href="Homepage2.php">Home</a>
@@ -120,6 +76,66 @@ $dbname = "boardgame_library";
 <!-- Below is the body -->
 
        <div class="container-sm"> 
+           
+           <?php
+
+include 'Classes/User.php';
+
+$dbHost = "localhost";
+$dbusr = "root";
+$dbpwd = "";
+$dbname = "boardgame_library";
+
+        try {
+    $dsn = "mysql:host=" . $dbHost . ";dbname=" . $dbname;
+    $pdo = new PDO($dsn, $dbusr, $dbpwd);
+    echo "Connection Successful";
+        } catch (PDOException $e) {
+            echo "DB Connection Failed: " . $e->getMessage();
+        }
+           
+        if (!empty($_POST)){
+    
+                $FirstName = $_POST["FirstName"];
+                $LastName = $_POST["LastName"];
+                $EmailAddress = $_POST["EmailAddress"];
+                $Password = $_POST["Password"];
+                $AddressLine = $_POST["AddressLine"];
+                $Town = $_POST["Town"];
+                $Postcode = $_POST["Postcode"];
+                $PhoneNumber = $_POST["PhoneNumber"];
+                          
+        $member = new User($FirstName, $LastName, $EmailAddress);
+        $member->SetPassword($Password);
+        $member->SetAddressLine($AddressLine);
+        $member->SetTown($Town);
+        $member->SetPassword($Password);
+        $member->SetPassword($PhoneNumber);
+       /* $member->insertNewUser();*/
+        
+               $sqlregistermember= "INSERT INTO member (FirstName, LastName, EmailAddress, Password, AddressLine, Town, Postcode, PhoneNumber) VALUES (:FirstName, :LastName, :EmailAddress, :Password, :AddressLine, :Town, :Postcode, :PhoneNumber) ";
+               $stmt = $pdo->prepare($sqlregistermember);              
+        
+               $stmt->execute([
+                'FirstName'=>$FirstName,
+                'LastName'=>$LastName,
+                'EmailAddress'=>$EmailAddress,
+                'Password'=>$Password,
+                'AddressLine'=>$AddressLine,
+                'Town'=>$Town,
+                'Postcode'=>$Postcode,
+                'PhoneNumber'=>$PhoneNumber,                
+                  
+            ]);
+   
+            echo "<br><p> Congratulations $FirstName, you're now a member!</p><br>"; 
+            echo "<p>Your username is: $EmailAddress</p>";
+         }
+         else{
+         echo "<br><br><h4>Sorry, there was an error. Please try registering again.</h4>" ;
+         }
+      
+    ?>
   </div> 
     <!--  Below is the footer -->  
     <br>
