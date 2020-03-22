@@ -1,7 +1,44 @@
 <?php
-include_once 'Classes/User.php';  
 
-?>
+$dbHost = "localhost";
+$dbusr = "root";
+$dbpwd = "";
+$dbname = "boardgame_library";
+
+        try {
+    $dsn = "mysql:host=" . $dbHost . ";dbname=" . $dbname;
+    $pdo = new PDO($dsn, $dbuser, $dbpwd);
+    echo "Connection Successful";
+        } catch (PDOException $e) {
+            echo "DB Connection Failed: " . $e->getMessage();
+        }
+            
+
+    $status = "";
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $FirstName = $_POST['FirstName'];
+        $LastName = $_POST['LastName'];
+        $EmailAddress = $_POST['EmailAddress'];
+        $Password = $_POST['Password'];
+        $AddressLine = $_POST['AddressLine'];
+        $Town = $_POST['Town'];
+        $Postcode = $_POST['Postcode'];
+        $Phonenumber = $_POST['Phonenumber'];
+                          
+        if(empty($FirstName) || empty($LastName) || empty($EmailAddress) || empty($Password) || empty($AddressLine) || empty($Town) || empty($postcode) || empty($phonenumber)){
+            $status = 'All fields are compulsory';
+        } else {
+            if(strlen($FirstName) >= 255 || !preg_match("/^[a-zA-Z-'\s]+$/", $FirstNAme)) {
+                $status = "Please enter a valid name";
+            } else if(!filter_var($EmailAddress, FILTER_VALIDATE_EMAIL)) {
+              $status = "Please enter a valid email";
+            } else {
+                $status = "Thanks for registering, $FirstName. Please log in using $EmailAddress.";
+            }
+        }
+    }
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Below is the head -->  
@@ -83,38 +120,7 @@ include_once 'Classes/User.php';
 <!-- Below is the body -->
 
        <div class="container-sm"> 
-    <?php  
-     
-        if (!empty($_POST)){
-    
-                $FirstName = $_POST["FirstName"];
-                $LastName = $_POST["LastName"];
-                $EmailAddress = $_POST["EmailAddress"];
-                $Password = $_POST["Password"];
-                $AddressLine = $_POST["AddressLine"];
-                $Town = $_POST["Town"];
-                $Postcode = $_POST["Postcode"];
-                $Phonenumber = $_POST["Phonenumber"];
-                          
-        $member = new User($FirstName, $LastName, $EmailAddress);
-        $member->SetPassword($Password);
-        $member->SetAddressLine($AddressLine);
-        $member->SetTown($Town);
-        $member->SetPassword($Password);
-        $member->SetPassword($Phonenumber);
-        $member->insertNewUser();
-   
-            echo "<br><p> Congratulations $FirstName, you're now a member!</p><br>"; 
-            echo "<p>Your username is: $EmailAddress</p>";
-        }
-        else{
-        echo "<br><br><h4>Sorry, there was an error. Please try registering again.</h4>" ;
-        }
-     
-?>
-
-    
-    </div> 
+  </div> 
     <!--  Below is the footer -->  
     <br>
     <br>
@@ -137,6 +143,8 @@ include_once 'Classes/User.php';
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   
 </body>
-    
+
 <!--End-->
 </html>	
+
+
