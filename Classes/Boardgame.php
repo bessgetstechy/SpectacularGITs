@@ -4,7 +4,7 @@ class BoardGame {
     
     public $gameID;
     public $title;  
-    public $category;
+    public $thumbnailLink;
     public $minPlayers;
     public $maxPlayers;
     public $bestPlayers;
@@ -21,12 +21,16 @@ class BoardGame {
     public $available;
     public $categoryName;
     public $dateAdded;
-
-    function getTitle() {
+    
+    public function __construct($title, $minPlayers) {
+        $this->title = $title;
+        $this->minPlayers = $minPlayers;
+    }
+                function getTitle() {
         return $this->title;
     }
     
-    function getCategory() {
+        function getCategory() {
         return $this->category;
     }
     
@@ -34,49 +38,7 @@ class BoardGame {
         return $this->gameID;
         }
         
-        
-    public function __construct($Title) {
-      $this->Title = $Title;
-    }
-    
-    public function setYearMade($YearMade) {
-    $this->YearMade = $YearMade;
-    }
-    
-    public function setPublisher($Publisher) {
-    $this->Publisher = $Publisher;
-    }
-    
-    public function setPlayable($Playable) {
-    $this->Playable = $Playable;
-    }
-    
-    public function setQuality($Quality) {
-    $this->Quality = $Quality;
-    }
-    
-    public function setMinPlayers($MinPlayers) {
-    $this->MinPlayers = $MinPlayers;
-    }
- 
-    public function setMaxPlayers($MaxPlayers) {
-    $this->MaxPlayers = $MaxPlayers;
-    }
-
-    
-    public function getYearMade() {
-    return $this->YearMade;
-    }
-    
-    public function getPublisher() {
-    return $this->Publisher;
-    }
-    
-    public function getMinPlayers() {
-    return $this->MinPlayers;
-    }
-    
-    public function getMaxPlayers() {
-    return $this->MaxPlayers;
-    }
+    function getImage() {
+        return $this->thumbnailLink;
+        }
 }
