@@ -1,41 +1,3 @@
-/* IMPORT FONT  */
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet');
-
-
-/* SIMPLE STYLE PAGE  */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing:border-box;
-}
-
-/* STYLE MAIN PAGE FEATURES  */
-
-/* TEXT STYLING  */
-body {
-  color: #e36c76;
-  text-align: center;
-  font-family: Varela Round, Helvetica;
-}
-
-header>h1{
-    color: #e36c76;
-    text-align: center;
-    font-family: Varela Round, sans-serif;
-}
-
-header>h2{
-    color: #e36c76;
-    text-align: center;
-    font-family: Varela Round, sans-serif;
-}
-
-header>h3{
-    color: #e36c76;
-    text-align: center;
-    font-family: Varela Round, sans-serif;
-}
-
 
 .center {
   display: block;
@@ -44,36 +6,6 @@ header>h3{
   width: 50%;
 }
 
-/* STYLE HEADER  */
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #Ea3467;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover {
-  background-color: #80f6c0;
-}     */
-
-
-
-
-/* STYLE FORM  */
 form-inline {
     justify-content: center;
 }
@@ -81,10 +13,7 @@ form-inline {
 
 h2 {text-align: center}
 
-
 /* Centered section inside the top navigation */
-
-
 .nav-centered {
   float: none;
   position: absolute;
@@ -92,3 +21,4 @@ h2 {text-align: center}
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
