@@ -40,7 +40,7 @@
           <a class="nav-link" href="Homepage2.php">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="About.php">About</a>
+          <a class="nav-link" href="BrowseAllPage.php">Browse Games</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="../profile/index.html">Contact Us</a>
@@ -92,13 +92,29 @@
   
     <div class="center">
 
-        Browse this page to see what's on offer...  (need to change the header image from about to browse)
+        
   </div>
 </div>
 
+<?php
+
+include 'boardgame_browse.php';
+include 'dbConnection.php';
 
 
-    
+$stmt = $pdo->prepare("SELECT * FROM board_games");
+$stmt ->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+echo "<table>";
+foreach ($result as $game) {
+    echo "<tr>";
+    echo "<td>" . $game['Title'] . "</td>";
+    echo "</tr>";
+}
+echo "</table>";
+
+?>
 
     <!--  Below is the footer -->  
     <br>

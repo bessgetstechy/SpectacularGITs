@@ -32,7 +32,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item"> <a class="nav-link" href="Homepage2.php">Home</span></a> </li>
-                        <li class="nav-item"> <a class="nav-link" href="About.php">About</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="BrowseAllPage.php">Browse Games</a> </li>
                         <li class="nav-item"> <a class="nav-link" href="../profile/index.html">Contact Us</a> </li>
                         <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Account </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
