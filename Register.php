@@ -113,7 +113,7 @@
 
                 <div class="form-group">
                     <label for="EmailAddress">Email Address</label>
-                    <input  type="EmailAddress" class="form-control" placeholder=""  name="EmailAddress" id="EmailAddress" value="" required size="35" />          
+                    <input  type="email" class="form-control" placeholder=""  name="EmailAddress" id="EmailAddress" value="" required size="35" />          
                     <small id="email" class="form-text text-muted">
                         Your email must contain a valid @ symbol.
                     </small>
@@ -122,7 +122,7 @@
               
                 <div class="form-group">
                     <label for="Password">Password</label>
-                    <input  type="Password" class="form-control" placeholder=""  name="Password" id="Password" value="" required size="8" />          
+                    <input  type="password" class="form-control" placeholder=""  name="Password" id="Password" required size="8" />          
                     <small id="password" class="form-text text-muted">
                         Password must contain 8 characters.
                     </small>
@@ -130,7 +130,7 @@
            
                 <div class="form-group">
                     <label for="AddressLine">Address Line</label>
-                    <input  type="AddressLine" class="form-control" placeholder=""  name="AddressLine" id="AddressLine" value=""/>          
+                    <input  type="text" class="form-control" placeholder=""  name="AddressLine" id="AddressLine" required />          
                     <small id="password" class="form-text text-muted">
                     </small>
                 </div> 
@@ -139,11 +139,11 @@
                       <div class="row">
                         <div class="col">
                             <label for="Town">Town</label>
-                            <input  type="text" class="form-control" placeholder=""  name="Town" id="Town" value="" />          
+                            <input  type="text" class="form-control" placeholder=""  name="Town" id="Town" required />          
                         </div>
                         <div class="col">
                             <label for=”Postcode”>Postcode</label>
-                            <input  type="text" class="form-control" placeholder=""  name="Postcode" id="Postcode" value=""/>
+                            <input  type="text" class="form-control" placeholder=""  name="Postcode" id="Postcode" value="" required />
                         </div>
         
                       </div>
@@ -151,7 +151,7 @@
                       
                 <div class="form-group">
                             <label for="Phonenumber">Phone Number</label>
-                            <input  type="text" class="form-control" placeholder=""  name="PhoneNumber" id="PhoneNumber" value="" />          
+                            <input  type="text" class="form-control" name="PhoneNumber" id="PhoneNumber" />          
                 </div>
             <br>
           
