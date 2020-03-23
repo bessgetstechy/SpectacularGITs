@@ -74,10 +74,11 @@
 </head>
 
 <!-- Below is the body -->
+<center>
 
        <div class="container-sm"> 
            
-           <?php
+<?php
 
 include 'Classes/User.php';
 
@@ -89,21 +90,21 @@ $dbname = "boardgame_library";
         try {
     $dsn = "mysql:host=" . $dbHost . ";dbname=" . $dbname;
     $pdo = new PDO($dsn, $dbusr, $dbpwd);
-    echo "Connection Successful";
+    /* echo "Connection Successful";*/
         } catch (PDOException $e) {
             echo "DB Connection Failed: " . $e->getMessage();
         }
            
-        if (!empty($_POST)){
+        if (null!==((filter_input(INPUT_POST, 'EmailAddress')))){
     
-                $FirstName = $_POST["FirstName"];
-                $LastName = $_POST["LastName"];
-                $EmailAddress = $_POST["EmailAddress"];
-                $Password = $_POST["Password"];
-                $AddressLine = $_POST["AddressLine"];
-                $Town = $_POST["Town"];
-                $Postcode = $_POST["Postcode"];
-                $PhoneNumber = $_POST["PhoneNumber"];
+                $FirstName = filter_input(INPUT_POST, 'FirstName', FILTER_SANITIZE_SPECIAL_CHARS);
+                $LastName = filter_input(INPUT_POST, 'LastName', FILTER_SANITIZE_SPECIAL_CHARS);
+                $EmailAddress = filter_input(INPUT_POST, 'EmailAddress', FILTER_SANITIZE_SPECIAL_CHARS);
+                $Password = filter_input(INPUT_POST, 'Password', FILTER_SANITIZE_SPECIAL_CHARS);
+                $AddressLine = filter_input(INPUT_POST, 'AddressLine', FILTER_SANITIZE_SPECIAL_CHARS);
+                $Town = filter_input(INPUT_POST, 'Town', FILTER_SANITIZE_SPECIAL_CHARS);
+                $Postcode = filter_input(INPUT_POST, 'Postcode', FILTER_SANITIZE_SPECIAL_CHARS);
+                $PhoneNumber = filter_input(INPUT_POST, 'PhoneNumber', FILTER_SANITIZE_SPECIAL_CHARS);
                           
         $member = new User($FirstName, $LastName, $EmailAddress);
         $member->SetPassword($Password);
@@ -128,7 +129,7 @@ $dbname = "boardgame_library";
                   
             ]);
    
-            echo "<br><p> Congratulations $FirstName, you're now a member!</p><br>"; 
+            echo "<br><p> Congratulations $FirstName, you're now a member!</p>"; 
             echo "<p>Your username is: $EmailAddress</p>";
          }
          else{
