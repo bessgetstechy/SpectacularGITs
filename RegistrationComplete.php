@@ -97,45 +97,41 @@ $dbname = "boardgame_library";
            
         if (null!==((filter_input(INPUT_POST, 'EmailAddress')))){
     
-                $FirstName = filter_input(INPUT_POST, 'FirstName', FILTER_SANITIZE_SPECIAL_CHARS);
-                $LastName = filter_input(INPUT_POST, 'LastName', FILTER_SANITIZE_SPECIAL_CHARS);
-                $EmailAddress = filter_input(INPUT_POST, 'EmailAddress', FILTER_SANITIZE_SPECIAL_CHARS);
-                $Password = filter_input(INPUT_POST, 'Password', FILTER_SANITIZE_SPECIAL_CHARS);
-                $AddressLine = filter_input(INPUT_POST, 'AddressLine', FILTER_SANITIZE_SPECIAL_CHARS);
-                $Town = filter_input(INPUT_POST, 'Town', FILTER_SANITIZE_SPECIAL_CHARS);
-                $Postcode = filter_input(INPUT_POST, 'Postcode', FILTER_SANITIZE_SPECIAL_CHARS);
-                $PhoneNumber = filter_input(INPUT_POST, 'PhoneNumber', FILTER_SANITIZE_SPECIAL_CHARS);
+                $firstname = filter_input(INPUT_POST, 'FirstName', FILTER_SANITIZE_SPECIAL_CHARS);
+                $lastname = filter_input(INPUT_POST, 'LastName', FILTER_SANITIZE_SPECIAL_CHARS);
+                $emailaddress = filter_input(INPUT_POST, 'EmailAddress', FILTER_SANITIZE_SPECIAL_CHARS);
+                $password = filter_input(INPUT_POST, 'Password', FILTER_SANITIZE_SPECIAL_CHARS);
+                $addressline = filter_input(INPUT_POST, 'AddressLine', FILTER_SANITIZE_SPECIAL_CHARS);
+                $town = filter_input(INPUT_POST, 'Town', FILTER_SANITIZE_SPECIAL_CHARS);
+                $postcode = filter_input(INPUT_POST, 'Postcode', FILTER_SANITIZE_SPECIAL_CHARS);
+                $phonenumber = filter_input(INPUT_POST, 'PhoneNumber', FILTER_SANITIZE_SPECIAL_CHARS);
                           
-        $member = new User($FirstName, $LastName, $EmailAddress);
-        $member->SetPassword($Password);
-        $member->SetAddressLine($AddressLine);
-        $member->SetTown($Town);
-        $member->SetPassword($Password);
-        $member->SetPassword($PhoneNumber);
-       /* $member->insertNewUser();*/
-        
+        $member = new User($firstname, $lastname, $emailaddress, $password, $addressline, $town, $password, $phonenumber);
+        /*$member->insertNewUser();*/
+
+ 
                $sqlregistermember= "INSERT INTO member (FirstName, LastName, EmailAddress, Password, AddressLine, Town, Postcode, PhoneNumber) VALUES (:FirstName, :LastName, :EmailAddress, :Password, :AddressLine, :Town, :Postcode, :PhoneNumber) ";
                $stmt = $pdo->prepare($sqlregistermember);              
         
                $stmt->execute([
-                'FirstName'=>$FirstName,
-                'LastName'=>$LastName,
-                'EmailAddress'=>$EmailAddress,
-                'Password'=>$Password,
-                'AddressLine'=>$AddressLine,
-                'Town'=>$Town,
-                'Postcode'=>$Postcode,
-                'PhoneNumber'=>$PhoneNumber,                
+                'FirstName'=>$firstname,
+                'LastName'=>$lastname,
+                'EmailAddress'=>$emailaddress,
+                'Password'=>$password,
+                'AddressLine'=>$addressline,
+                'Town'=>$town,
+                'Postcode'=>$postcode,
+                'PhoneNumber'=>$phonenumber,                
                   
             ]);
    
-            echo "<br><p> Congratulations $FirstName, you're now a member!</p>"; 
-            echo "<p>Your username is: $EmailAddress</p>";
+            echo "<br><p> Congratulations $firstname, you're now a member!</p>"; 
+            echo "<hp>Your username is: $emailaddress</p>";
          }
          else{
          echo "<br><br><h4>Sorry, there was an error. Please try registering again.</h4>" ;
          }
-      
+     
     ?>
   </div> 
     <!--  Below is the footer -->  

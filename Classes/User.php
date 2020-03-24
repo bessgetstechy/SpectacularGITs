@@ -13,10 +13,15 @@ class User {
     public $role = 'member';
     
 
-    public function __construct($firstname, $lastname, $email) {
+    public function __construct($firstname, $lastname, $email, $addressline, $town, $postcode, $phonenumber,$password) {
       $this->firstname = $firstname;
       $this->lastname = $lastname;
       $this->email = $email;
+      $this->addressline = $addressline;
+      $this->town = $town;
+      $this->postcode = $postcode;
+      $this->phonenumber = $phonenumber;
+      $this->password = $password;
     }
     
     public function setFirstname($firstname) {
@@ -67,21 +72,28 @@ class User {
     return $this->addressline; $this->town; $this->postcode;
     }
     
-   /* public function insertNewUser() {
-        
-               $sqlregistermember= "INSERT INTO member (FirstName, LastName, EmailAddress, Password, AddressLine, Town, Postcode) VALUES (:FirstName, :LastName, :EmailAddress, :Password, :AddressLine, :Town, :Postcode) ";
+   /*public function insertNewUser() {
+               $sqlregistermember= "INSERT INTO member (FirstName, LastName, EmailAddress, Password, AddressLine, Town, Postcode, PhoneNumber) VALUES (:FirstName, :LastName, :EmailAddress, :Password, :AddressLine, :Town, :Postcode, :PhoneNumber) ";
                $stmt = $pdo->prepare($sqlregistermember);              
-               
+        
                $stmt->execute([
-                'FirstName'=>$FirstName,
-                'LastName'=>$LastName,
-                'EmailAddress'=>$EmailAddress,
-                'Password'=>$Password,
-                'AddressLine'=>$AddressLine,
-                'Town'=>$Town,
-                'Postcode'=>$Postcode,                
-            ]
-              );
+                'FirstName'=>$firstname,
+                'LastName'=>$lastname,
+                'EmailAddress'=>$emailaddress,
+                'Password'=>$password,
+                'AddressLine'=>$addressline,
+                'Town'=>$town,
+                'Postcode'=>$postcode,
+                'PhoneNumber'=>$phonenumber,                
+                  
+            ]);
+   
+            echo "<br><p> Congratulations $firstname, you're now a member!</p>"; 
+            echo "<hp>Your username is: $emailaddress</p>";
+         }
+        
+         
+            
                   
         try {
             $pdo = new PDO('mysql:host=localhost:8080;dbname=boardgame_library' , 'root' , '');
