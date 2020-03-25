@@ -83,14 +83,13 @@
 <body>
     <br>
     <br>
+<center>
         <h2 style="font-family: 'Pacifico', cursive; font-size: 60px">About</h2>
     <br>
     <br>
-  
-    <div class="center">
+ 
         We are 5 girls who decided to learn how to code, and wanted to set up a board game library business! Thank you for visiting our page. 
-  </div>
-</div>
+
 
 
 

@@ -90,7 +90,7 @@
     <br>
     <br>
 <center>
-        <h2 style="font-family: 'Pacifico', cursive; font-size: 0px">Browse the games we have on offer...</h2>
+        <h2 style="font-family: 'Pacifico', cursive; font-size: 40px">Browse the games we have on offer...</h2>
     <br>
     <br>
   
