@@ -22,7 +22,13 @@ if (isset($_POST['search'])) {
         <link rel="stylesheet" type="text/css" href="LibraryStyles.css">-->
 
         <title>Spectacular Board Game Library | Register </title>
-
+ <style> 
+    #MainTitle {color: rgb(242, 107, 203);
+        line-height: 1.4;
+        font-size: 40px;}
+    
+    
+        </style>
 
 
         <!-- Below is the navigation -->
@@ -84,7 +90,7 @@ if (isset($_POST['search'])) {
 
 <!-- Below is the body -->
 <body>
-    <div class="center">
+    <center>
         <br>
         <br>
         <img src="Images\Spectacular logo2.png" alt="Spectacular Board Game Library" width="462" height="190" class="center"></a>
