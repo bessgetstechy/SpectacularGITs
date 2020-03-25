@@ -84,7 +84,7 @@ if (isset($_POST['search'])) {
                     <a class="nav-link" href="Register.php">Sign up<span class="sr-only">(current)</span></a>
                 </li>
                 <form class="form-inline">
-                    <button class="btn btn-outline-light" type="button" onclick="window.location.href = 'http://localhost/Library/Login.php';" >Log in</button>
+                    <button class="btn btn-outline-light" type="button" onclick="window.location.href = 'Login.php';" >Log in</button>
                 </form>
             </ul>
     </nav>

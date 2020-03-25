@@ -94,7 +94,7 @@
     
             <!-- Login Form -->
                 <form method="post">  
-                    <label>Username</label>  
+                        <label>Username</label>  
                         <input type="text" name="username" class="form-control" />  
                         <br/>  
                         <label>Password</label>  
