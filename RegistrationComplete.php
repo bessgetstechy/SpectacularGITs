@@ -81,19 +81,7 @@
 <?php
 
 include 'Classes/User.php';
-
-$dbHost = "localhost";
-$dbusr = "root";
-$dbpwd = "";
-$dbname = "boardgame_library";
-
-        try {
-    $dsn = "mysql:host=" . $dbHost . ";dbname=" . $dbname;
-    $pdo = new PDO($dsn, $dbusr, $dbpwd);
-    /* echo "Connection Successful";*/
-        } catch (PDOException $e) {
-            echo "DB Connection Failed: " . $e->getMessage();
-        }
+include 'dbConnection.php';
            
         if (null!==((filter_input(INPUT_POST, 'EmailAddress')))){
     

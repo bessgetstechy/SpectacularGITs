@@ -3,6 +3,7 @@
 include 'Classes/Boardgame.php';
 try {
       $pdo = new PDO('mysql:host=localhost;dbname=boardgame_library' , 'root' , '');
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
 	die($e->getMessage());  //die() for illustration
 //always handle errors 
