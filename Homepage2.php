@@ -25,7 +25,7 @@ if (isset($_POST['search'])) {
  <style> 
     #MainTitle {color: rgb(242, 107, 203);
         line-height: 1.4;
-        font-size: 40px;}
+        font-size: 30px;}
     
     
         </style>
@@ -98,7 +98,7 @@ if (isset($_POST['search'])) {
         <br>
         <br>
 
-        <form class="d-flex justify-content-center" method = "post">
+        <form style-" class="d-inline-flex justify-content-center" method = "post">
             <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search Games" aria-label="Search" >
             <button class="btn my-2 my-sm-0 " style="background-color: #000000; color: white" type="submit">Search</button>
         </form>
@@ -184,7 +184,17 @@ if (isset($_POST['search'])) {
                 <div class="col">
                     <p id="MainTitle">Library Address</p>
                     <p>Get From Database!!</p>
+                   <?php 
+                 
+include 'dbConnection.php';
+$stmt2 = $pdo->prepare("SELECT Name, Address, PhoneNumber, EmailAddress FROM library");
+$stmt2 ->execute();
+$result = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
+    echo $library['Name'];
+
+
+?>
                 </div>
             </div>
         </div>
