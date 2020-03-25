@@ -21,17 +21,24 @@
         
         <!-- Below is the navigation -->
 
-    <nav class="navbar navbar-expand navbar-light flex-column flex-md-row d-flex justify-content-between bd-navbar" style="background-color: rgb(242, 107, 203)">
+        <nav class="navbar navbar-expand navbar-light flex-column flex-md-row d-flex justify-content-between bd-navbar" style="background-color: rgb(242, 107, 203)">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       
     <ul class="navbar-nav mr-auto">
-       
+        
+      <li class="nav-item">
+         <a class="navbar-brand" href="#">
+         <img src="Specs.png" width="50" height="30" alt=""></a>
+      </li>
       
       <li class="nav-item">
           <a class="nav-link" href="Homepage2.php">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="About.php">About</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="BrowseAllPage.php">Our Games</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="../profile/index.html">Contact Us</a>
@@ -113,8 +120,8 @@ include 'dbConnection.php';
                   
             ]);
    
-            echo "<br><p> Congratulations $firstname, you're now a member!</p>"; 
-            echo "<hp>Your username is: $emailaddress</p>";
+            echo "<br><br><br><h3>Congratulations $firstname, you're now a member!</h3>"; 
+            echo "<p>Your username is: <strong>$emailaddress</strong></p>";
          }
          else{
          echo "<br><br><h4>Sorry, there was an error. Please try registering again.</h4>" ;

@@ -25,7 +25,7 @@
         
         
         <!-- Below is the navigation -->
-
+              
     <nav class="navbar navbar-expand navbar-light flex-column flex-md-row d-flex justify-content-between bd-navbar" style="background-color: rgb(242, 107, 203)">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       

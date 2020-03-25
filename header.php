@@ -47,7 +47,7 @@
                     </ul>
 
             <!-- SEARCH BAR -->        
-                <div class="nav-centered">
+                <div class="nav">
                     <form class="form-inline my-2 my-lg-0">
                           <input class="form-control mr-sm-2" type="search" placeholder="Search Games" aria-label="Search">
                           <button class="btn my-2 my-sm-0 " style="background-color: #000000; color: white" type="submit">Search</button>

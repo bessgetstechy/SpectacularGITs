@@ -72,13 +72,6 @@ if (isset($_POST['search'])) {
                 </li>
             </ul>
 
-            <div class="nav-centered">
-                <form class="form-inline my-2 my-lg-0" method = "post">
-                    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search Games" aria-label="Search">
-                    <button class="btn my-2 my-sm-0 " style="background-color: #000000; color: white" type="submit">Search</button>
-                </form>
-            </div>
-
             <ul class="navbar-nav">
                 <li class="nav-item active">
                     <a class="nav-link" href="Register.php">Sign up<span class="sr-only">(current)</span></a>
