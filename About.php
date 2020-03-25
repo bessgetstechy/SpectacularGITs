@@ -37,6 +37,9 @@
         <a class="nav-link" href="About.php">About<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
+                    <a class="nav-link" href="BrowseAllPage.php">Our Games</a>
+                </li>
+      <li class="nav-item">
         <a class="nav-link" href="../profile/index.html">Contact Us</a>
       </li>
       <li class="nav-item dropdown">
