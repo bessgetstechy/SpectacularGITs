@@ -105,7 +105,7 @@ if (isset($_POST['search'])) {
             <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search Games" aria-label="Search" >
             <button class="btn my-2 my-sm-0 " style="background-color: #000000; color: white" type="submit">Search</button>
         </form>
-    </div>
+    </div><br><br>
     <?php
     
     if(isset($_POST["search"])) {
@@ -186,15 +186,21 @@ if (isset($_POST['search'])) {
                 </div>
                 <div class="col">
                     <p id="MainTitle">Library Address</p>
-                    <p>Get From Database!!</p>
+                    
                    <?php 
                  
-include 'dbConnection.php';
-$stmt2 = $pdo->prepare("SELECT Name, Address, PhoneNumber, EmailAddress FROM library");
-$stmt2 ->execute();
-$result = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+try {
+      $pdo = new PDO('mysql:host=localhost;dbname=boardgame_library' , 'root' , '');
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+ } catch (PDOException $e) {
+            echo "DB Connection Failed: " . $e->getMessage();
+        }
+$stmt2 = $pdo->query("SELECT Name, Address, PhoneNumber, EmailAddress FROM library");
+while ($row = $stmt2->fetch()){
+        echo $row[0] ."<br>", $row[1] ."<br>", $row[2] ."<br>", $row[3] ."<br>";
+}
 
-    echo $library['Name'];
+
 
 
 ?>
