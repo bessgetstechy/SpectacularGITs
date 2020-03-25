@@ -40,7 +40,10 @@
           <a class="nav-link" href="Homepage2.php">Home</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="BrowseAllPage.php">Browse Games</a>
+                    <a class="nav-link" href="About.php">About</a>
+                </li>
+      <li class="nav-item">
+          <a class="nav-link" href="BrowseAllPage.php">Our Games</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="../profile/index.html">Contact Us</a>
