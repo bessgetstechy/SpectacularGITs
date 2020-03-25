@@ -15,9 +15,9 @@
                 echo "You searched for: $searchTitle"."<br>";
 
                 $result = $pdo->prepare("SELECT gameID FROM board_games where TITLE = :searchTitle");
-                $result ->execute(array(
+                $result ->execute([
                     ':searchTitle' => $searchTitle
-                ));
+                        ]);
                 
                 if ($row[0] = null) {
                     echo "No game found".PHP_EOL;

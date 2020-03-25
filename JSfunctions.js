@@ -33,9 +33,14 @@ function showDeleteGameForm() {
   var x = document.getElementById("deleteGameForm");
   if (x.style.display === "none") {
     x.style.display = "block";
+    document.getElementById('buttondelete').innerHTML = 'Hide Form';
   } else {
     x.style.display = "none";
+    document.getElementById('buttondelete').innerHTML = 'Show Form';
   }
 }
+
+
+
 
 

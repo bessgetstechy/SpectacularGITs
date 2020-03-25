@@ -1,9 +1,9 @@
       
-
+<center>
 <p class="adminheaders" style="text-align: center; font-family: 'Pacifico', cursive; font-size:30px">Add Board Game&nbsp;</p>
 <button id="button1" onclick="showAddGameForm()" class="btn" style="color: rgb(242, 107, 203">Show Form</button>
 <br>
-    
+</center>
            
  
 <!-- PHP + MYSQL : POST SECTION -->
@@ -59,8 +59,7 @@
         //PDO
         $stmt = $pdo->prepare("INSERT INTO `board_games`(`ThumbnailLink`,`Title`,`MinPlayers`,`MaxPlayers`,`BestPlayers`,`MinAge`,`PlayTime`,`GameMechanics`,`Publisher`,`YearMade`,`DifficultyRating`,`Quality`,`CategoryName`,`DateAdded`)"
                                               . "VALUES (:thumbnailLink,:title, :minPlayers, :maxPlayers, :bestPlayers, :minAge, :playTime, :gameMechanics, :publisher, :yearMade, :difficultyRating, :quality, :category, :dateAdded)");
-        $stmt->execute(
-                    array(
+        $stmt->execute([
                         ':thumbnailLink' => $thumbnailLink,
                         ':title' => $title,
                         ':minPlayers' => $minPlayers,
@@ -75,7 +74,7 @@
                         ':quality' => $quality,
                         ':category' => $category,
                         ':dateAdded' => $dt
-                    )
+                    ]
                 );
 
         //Messsage for User - includes Title and Game ID
@@ -110,14 +109,15 @@
  
      ?>
 
-</center>
- 
+
 
     
-<!-- FORM -->
+<!-- FORM (POST)-->
+
     <div class="boardgameform" id="addGameForm" style="display: none">   
     <form action="" method="POST" >
         <p style="font-size: 13px">Fields in bold are <b>required</b></p>  
+        
         <!-- TITLE -->
 
         <label for="Title"><b>Board Game Title:&nbsp</b></label>
@@ -127,7 +127,7 @@
 
         <label for="ThumbnailLink"><b>Image Link URL:&nbsp&nbsp&nbsp&nbsp </b></label>
         <input type="url" name="ThumbnailLink" id="ThumbnailLink" placeholder="" style="width:200px; height:25px;" required maxlength="255">
-                <br>
+        <br>
                 
 <!-- PLATER INFORMATION -->
         

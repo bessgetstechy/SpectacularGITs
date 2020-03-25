@@ -1,4 +1,11 @@
+<?php session_start(); 
 
+ if(empty($_SESSION["username"])){
+     header("location:adminarea/logintest.php"); 
+ } else {
+     $username = $_SESSION["username"];
+ }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <script src="JSfunctions.js"></script>
@@ -16,6 +23,7 @@
         Here you can add, edit and delete a game from the library.</p>
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ_VdqnZDaliE9clcWAcIOTDxslcjI_-gHsSUFgneoj23x2Ax1v" alt="Library Icon" height="42" width="35">
     <br>
+    </center>
      
 <!-- ADDING A NEW BOARD GAME -->  
 
@@ -31,10 +39,23 @@
         <!-- EDIT GAME FORM -->
         
         <?php include 'adminarea/editGameForm.php'; ?>  
-        
         <br>
-            <h2 style="font-family: 'Pacifico', cursive;">Delete Game</h2>
-            <br><br>
+        
+<!-- DELETING A GAME -->          
+
+        <?php include 'adminarea/deletegame.php'; ?>  
+        <br>
+        
+<!-- OTHER -->          
+        <h2 style="font-family: 'Pacifico', cursive;">Admin</h2>
+        <br>
+        <!-- Logout -->
+        <a href="adminarea/logout.php" style="color: rgb(242, 107, 203">Logout</a>
+        
+        
+
+        
+        
 
 
     
