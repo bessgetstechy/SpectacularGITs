@@ -42,8 +42,8 @@
       <li class="nav-item">
                     <a class="nav-link" href="About.php">About</a>
                 </li>
-      <li class="nav-item">
-          <a class="nav-link" href="BrowseAllPage.php">Our Games</a>
+      <li class="nav-ite active">
+          <a class="nav-link" href="BrowseAllPage.php">Our Games<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="../profile/index.html">Contact Us</a>
@@ -89,7 +89,8 @@
 <body>
     <br>
     <br>
-        <h2 style="font-family: 'Pacifico', cursive;">Browse the games we have on offer...</h2>
+<center>
+        <h2 style="font-family: 'Pacifico', cursive; font-size: 0px">Browse the games we have on offer...</h2>
     <br>
     <br>
   

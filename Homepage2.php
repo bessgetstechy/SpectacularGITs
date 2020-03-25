@@ -43,8 +43,8 @@ if (isset($_POST['search'])) {
                         <img src="Specs.png" width="50" height="30" alt=""></a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="Homepage2.php">Home</a>
+                <li class="nav-item active">
+                    <a class="nav-link active" href="Homepage2.php">Home<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="About.php">About</a>
