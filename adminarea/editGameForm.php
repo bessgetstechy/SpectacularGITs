@@ -78,7 +78,6 @@
     
 <!-- FORM -->
 <div class="editboardgameform" id="editGameForm" style="display: none">  
- <p> Please note this section is WIP and does not work</p>   
     
     <!-- SEARCH FIELDS TITLE + ID -->
     <form action="" method="GET" >
