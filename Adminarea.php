@@ -47,7 +47,7 @@
         <br>
         
 <!-- OTHER -->          
-        <h2 style="font-family: 'Pacifico', cursive;">Admin</h2>
+        <h2 style="font-family: 'Pacifico', cursive; font-size:30px">Admin</h2>
         <br>
         <!-- Logout -->
         <a href="adminarea/logout.php" style="color: rgb(242, 107, 203">Logout</a>
